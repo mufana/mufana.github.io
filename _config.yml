@@ -2,4 +2,5 @@ name: Hank Quinland, Horrible Cop
 permalink: /blog/:year/:month/:day/:title
 theme: jekyll-theme-tactile
 title: The Dev Shed
-description: [A short description of your site's purpose]
+description: Serving all your sheddy code needs!
+
