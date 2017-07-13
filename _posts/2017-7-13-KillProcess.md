@@ -1,3 +1,8 @@
+---layout: post
+title: "Kill process with a PowerShell oneliner!"
+date: 2017-07-13
+---
+
 # Kill a Windows process with a PowerShell oneliner!
 
 *Well this is an easy one... 
