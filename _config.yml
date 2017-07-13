@@ -1,4 +1,3 @@
 name: Hank Quinland, Horrible Cop
-markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 theme: jekyll-theme-tactile
