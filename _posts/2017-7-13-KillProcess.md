@@ -11,3 +11,4 @@ simple open up the PowerShell Console and type:*
 ```PowerShell
 (Get-Process Notepad).kill()
 ```
+<script src="https://gist.github.com/mufana/620d48807fa301c8c88328abf632e3b2.js"></script>
