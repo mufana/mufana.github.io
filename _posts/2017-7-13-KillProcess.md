@@ -13,3 +13,5 @@ simple open up the PowerShell Console and type:*
 ```
 ## And here's a gist!
 <script src="https://gist.github.com/mufana/620d48807fa301c8c88328abf632e3b2.js"></script>
+
+[Go back](https://mufana.github.io/blog)
