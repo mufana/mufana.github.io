@@ -12,12 +12,12 @@ Recently I ran into a challenge where I had to update a SQL application. This pa
 Before I could begin with the update itself, I had to physically close every instance of the application on the VMware View clients. Therefore, I had to:
 
 * login to the SQL Server.
-* open up the SQL Management Studio.
-* go to the processes and check which VMware View client is connected. 
+* Open up the SQL Management Studio.
+* Go to the processes and check which VMware View client is connected. 
 * Then, login to VMware View Administrator, find the clients and check who's logged in to that client. 
-* Last, find the phonenumber of that person and make a phone call.
+* Last, find the phone number of that person and make a phone call.
 
-Now, I like my work. I really do. But what I don't like is going E.T. make phone *home* calls to 100+ individual users and ask them to please stop working in the application I was about to update. 
+Now, I like my work. I really do. But what I don't like is going E.T. to make phone *home* calls to 100+ individual users and ask them to please stop working in the application I was about to update. 
 
 So, I decided to use a little PowerShell.
 
@@ -65,7 +65,7 @@ taskkill /s HOSTNAME /im APPLICATION.EXE
 
 The SQL server had more then 100 connections to the database. So, no way I was gonna run the taskkill command to each of them.
 
-I decided to use that time to write a script that does the job for me.
+Instead, I used that time to write a script that does the job for me.
 
 ### A few things to take into consideration
 
@@ -87,7 +87,6 @@ $ProdAppExe = "Prod\Notepad.exe"
 ### Step 2
 
 Create a datatable to hold enviroment name, server, instance, database and executable names.
-
 
 ```PowerShell
 $App = New-Object System.Data.DataTable
@@ -202,6 +201,14 @@ Function Write-Console {
 
 ### Step 6
 
+To make it easy for someone with no knowledge of PowerShell, I created a *.cmd* file that executes:
+
+```Batch
+PowerShell.exe /nameofscript.ps1
+```
+
+The only thing the admin had to do is click the *.cmd* file and the script will execute.
+
 ## Time for the real script
 
 ### First step is to get the selection the admin made
@@ -222,7 +229,7 @@ else{
 
 ### Second step is to build new vars
 
-The 'Get-Environment' function gets the selected environment. (Rememeber the rows from step 3?)
+The 'Get-Environment' function gets the selected environment. (Remember the rows from step 3?)
 
 ```PowerShell
 $App.Rows.Add("Test","Lab1","Lab1","TestDB","$TestAppExe")
@@ -293,7 +300,8 @@ It's just like playing Quake! Minus the headshots!
 
 ## Wrapping things up
 
-I wrote this script in less then an hour. And I'm using it every time I have to do updates for the application I wrote it for. Sometimes this happens every week. Saves me lots of phonecalls and time.
+I wrote this script in less then an hour. And I'm using it every time I have to do updates for the application I wrote it for. 
+Sometimes this happens every week. This saves me lots time and lots of phone calls.
 
 ## The complete script
 
