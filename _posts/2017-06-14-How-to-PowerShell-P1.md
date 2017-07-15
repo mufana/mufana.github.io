@@ -21,6 +21,7 @@ The first time you open up the blue console, you will see something similar to t
 
 At first this blue thing can be a bit daunting. But! Don’t be scared of it. Because I can assure you, even with no knowledge of PowerShell you’ll still be able to use it. And you may already use PowerShell without even knowing!
 
+
 ### Say what
 
 You can use native ‘Command Promp’ commands. So: Dir, CD or CLS will work. Even if you come from Linux. Because, Linux commands will work. (ls, Clear).
@@ -28,6 +29,7 @@ You can use native ‘Command Promp’ commands. So: Dir, CD or CLS will work. E
 ![Alias](https://codeinblue.files.wordpress.com/2016/03/2.png)
 
 Notice that ‘dir’ and ‘ls’ generate the same output. That’s because ‘Dir” and 'ls’ are aliases for a PowerShell cmdlet called: ‘Get-ChildItem’. So if we type ‘Get-Childitem’ we get exactly the same as with ‘dir’ and ‘ls’.
+
 
 To see which aliases are defined for a particular cmdlet:
 
@@ -82,3 +84,5 @@ Get-Command
 Ok, I know! this one is called 'command' and not cmdlet. 
 
 In the next blog we’ll dig a little deeper and start exploring PowerShell.
+
+[Go back](https://mufana.github.io/blog)
