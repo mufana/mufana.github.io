@@ -7,11 +7,19 @@ date: 2017-07-15
 
 ## Background
 
-Recently I ran into a challenge where I had to update a SQL application. This particlair application consisted of a client part. (running on VMware View clients) and a server part. (running on Windows 2012 R2 / SQL 2014 SP2)
+Recently I ran into a challenge where I had to update a SQL application. This particulair application consisted of a client part. (running on VMware View clients) and a server part. (running on Windows 2012 R2 / SQL 2014 SP2)
 
-Before I could begin with the update itself, I had to phycially close every instance of the application on the VMware View clients. Therefore, I had to login to the SQL Server, open up the SQL Management Studio, go to the processes and check which VMware View client is connected. (Then, login to VMware View Administrator, find the clients and check who's logged in to that client. Last, find the phonenumber of that person and make a phonecall.
+Before I could begin with the update itself, I had to physically close every instance of the application on the VMware View clients. Therefore, I had to:
 
-Now, I like my work. I really do. But what I don't like is make phonecalls to 100+ individual users and ask them to please stop working in the application.
+* login to the SQL Server.
+* open up the SQL Management Studio.
+* go to the processes and check which VMware View client is connected. 
+* Then, login to VMware View Administrator, find the clients and check who's logged in to that client. 
+* Last, find the phonenumber of that person and make a phone call.
+
+Now, I like my work. I really do. But what I don't like is going E.T. make phone *home* calls to 100+ individual users and ask them to please stop working in the application I was about to update. 
+
+So, I decided to use a little PowerShell.
 
 ## The environment
 
@@ -19,19 +27,24 @@ The application ran on a DTAP environment. Each enviroment had to be updated on 
 
 ## Recreating
 
+I've recreated a few things on my own environement to show you exactly what I did. 
+
+So, in my environment I have one SQL Server. (Lab1). And a Client running the application (Also Lab1). 
+The application I'm about to close (or kill) is called: Notepad. 
+
 * The SQL database running on server: Lab1
 
 * The client computer also running on: Lab1
 
-Now, the challenge is to stop the application on Lab1.
+Now, the challenge is to stop 'Notepad' on Lab1.
 
 ## The SQL script
 
-As you can see in the image below, I have two databases. I want to find out who is connected to the production database. 
+As you can see in the image below, I have two databases. I want to find out which client desktop is connected to the production database. 
 
 ![Image of SQL](https://codeinblue.files.wordpress.com/2017/02/1.png)
 
-To find this out I ran 'exec sp who' against the production DB.
+To find this out I ran simple 'exec sp who'. 
 
 ```SQL
 exec sp who
