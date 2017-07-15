@@ -1,6 +1,6 @@
 ---
-title: "Kill process with a PowerShell oneliner!"
-date: 2017-07-13
+title: "PowerShell and SQL (Headshots)"
+date: 2017-07-15
 ---
 
 # PowerShell and SQL (headshots)
