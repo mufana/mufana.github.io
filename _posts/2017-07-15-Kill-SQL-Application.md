@@ -13,7 +13,7 @@ Before I could begin with the update itself, I had to physically close every ins
 
 Therefore, I had to:
 
-* login to the SQL Server.
+* Login to the SQL Server.
 * Open up the SQL Management Studio.
 * Go to the processes and check which VMware View client is connected. 
 * Then, login to VMware View Administrator, find the clients and check who's logged in to that client. 
