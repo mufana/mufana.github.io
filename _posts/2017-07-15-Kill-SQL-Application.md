@@ -484,3 +484,5 @@ Foreach ($Comp in $ActiveHosts) {
     }
 If((Show-MsgBox -Title "Application closed" -Text "Application is closed on: $($ActiveHosts.count) desktop(s)." -Icon Information)){Exit}
 ```
+
+[Go back](https://mufana.github.io/blog)
