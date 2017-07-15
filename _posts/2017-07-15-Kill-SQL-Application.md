@@ -9,7 +9,9 @@ date: 2017-07-15
 
 Recently I ran into a challenge where I had to update a SQL application. This particulair application consisted of a client part. (running on VMware View clients) and a server part. (running on Windows 2012 R2 / SQL 2014 SP2)
 
-Before I could begin with the update itself, I had to physically close every instance of the application on the VMware View clients. Therefore, I had to:
+Before I could begin with the update itself, I had to physically close every instance of the application on the VMware View clients. Killing all connections on the SQL Server wasn't enough. Annoyingly, this application automatically re-established the connection to the SQL server.
+
+Therefore, I had to:
 
 * login to the SQL Server.
 * Open up the SQL Management Studio.
