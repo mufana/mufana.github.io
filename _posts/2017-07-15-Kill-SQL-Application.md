@@ -1,6 +1,7 @@
 ---
 title: "PowerShell and SQL (Headshots)"
 date: 2017-07-15
+tags: PowerShell, SQL
 ---
 
 # PowerShell and SQL (headshots)
@@ -29,10 +30,9 @@ The application ran on a DTAP environment. Each enviroment had to be updated on 
 
 ## Recreating
 
-I've recreated a few things on my own environement to show you exactly what I did. 
+I've recreated a few things on my own environment to show you exactly what I did. 
 
-So, in my environment I have one SQL Server. (Lab1). And a Client running the application (Also Lab1). 
-The application I'm about to close (or kill) is called: Notepad. 
+In my environment I have:
 
 * The SQL database running on server: Lab1
 
@@ -42,11 +42,11 @@ Now, the challenge is to stop 'Notepad' on Lab1.
 
 ## The SQL script
 
-As you can see in the image below, I have two databases. I want to find out which client desktop is connected to the production database. 
+As you can see in the image below, I have two databases. I want to find out which desktop(s) are connected to the database. 
 
 ![Image of SQL](https://codeinblue.files.wordpress.com/2017/02/1.png)
 
-To find this out I ran simple 'exec sp who'. 
+To find this out I ran simple 'exec sp who' against the master database.
 
 ```SQL
 exec sp who
@@ -88,7 +88,7 @@ $ProdAppExe = "Prod\Notepad.exe"
 
 ### Step 2
 
-Create a datatable to hold enviroment name, server, instance, database and executable names.
+Create a datatable to hold environment name, server, instance, database and executable names.
 
 ```PowerShell
 $App = New-Object System.Data.DataTable
@@ -302,8 +302,9 @@ It's just like playing Quake! Minus the headshots!
 
 ## Wrapping things up
 
-I wrote this script in less then an hour. And I'm using it every time I have to do updates for the application I wrote it for. 
-Sometimes this happens every week. This saves me lots time and lots of phone calls.
+Now in this this example I only had one server and one client running on the same machine and I'm 'killing' the Notepad application. In real life, I have about 100 clients running the application. 
+
+I wrote this script in less then an hour. And both me and my colleagues use this script (or tool) every time we have updates for the application. Which happens around 30 times a year. So you can imagine the amount of time we are saving. Let alone the fact that the updates can only be installed in special service windows. And of course, those windows never begin at 10:00am after I had my first cup of coffee. 
 
 ## The complete script
 
