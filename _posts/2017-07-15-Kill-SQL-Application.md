@@ -315,7 +315,7 @@ I wrote this script in less then an hour. And both me and my colleagues use this
 =================================================================
 Filename      :  Kill-Application.ps1
 Version       :  0.2
-Created by    :  Joe Blaaw
+Created by    :  Joe Blaauw
 Created on    :  16-01-2017
 
 Last Modified : 
@@ -334,12 +334,12 @@ PSversion     :  3.0
 
 <#
 ============================ChangeLog===========================
-Author     :: Mufana
+Author     :: Joe Blaauw
 #_______________________________________________________________
 Version    :: 0.1 - Initial release
 #_______________________________________________________________
 Version    :: 0.2 - Update
-ChangedBy  :: Mufana
+ChangedBy  :: JB
 ChangeLog  :: Added multiple GUI / Verification windows + Added logging.
               Solved bug that script didn't exit if no environment was selected. 
               Added function <Show-msgbox> to display information to the user.
