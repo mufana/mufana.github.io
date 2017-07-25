@@ -51,7 +51,7 @@ Get-Alias
 
 ![get-alias](https://codeinblue.files.wordpress.com/2016/03/8.png?)
 
-While this is the default list of aliases that comes with PowerShell, you can also add your own aliases. For instance; I’m a Linux guy. And used working with <cat> and <grep>.  Where <cat> is an actual default alias for <Get-Content>, there is no alias like <grep> for <Select-String>.
+While this is the default list of aliases that comes with PowerShell, you can also add your own aliases. For instance; I’m a Linux guy. And used working with 'cat' and 'grep'.  Where 'cat' is an actual default alias for 'Get-Content', there is no alias like 'grep' for 'Select-String'.
 
 But that doesn't stop me from creating my own.
 
