@@ -157,3 +157,5 @@ $Results | Select-Object Logon,Name,Department,eMail,LoggedIn,@{name=”MailBoxS
 Export these results to a csv and the result is almost magical!
 
 ![Image of result](https://i2.wp.com/codeinblue.files.wordpress.com/2017/08/7.png)
+
+[Go back](https://mufana.github.io/blog)
