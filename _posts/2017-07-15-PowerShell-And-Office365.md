@@ -9,7 +9,7 @@ date: 2017-08-03
 
 A few days ago I was aksed to get a list of mailboxstatistics from a few or our users. Or to be more precise; a list of users with their LogonName,firstName,lastName,department,Title and the size of the mailbox. 
 
-Now, I don't have lots of Office365 knowledge. However I'm equipped with the magic of PowerShell. So this had to an easy task. And if not; there's always 'Get-Help'.
+Now, I don't have lots of Office365 knowledge. However I'm equipped with the magic of PowerShell. So this had to be an easy task. And if not; there's always 'Get-Help'.
 
 ## What to script
 
@@ -110,7 +110,7 @@ Foreach ($usr in $Users) {$MailboxUsers = Get-User $usr | Where-Object {$_.recip
 ```
 
 What?
-Well, for all the users in the userlist.txt, I create a new variable '$MailboxUsers' and I use that to store the output of the 'get-user' query. And, I only want users with a UserMailbox. We do have uers with no mailbox or shared mailboxes.
+Well, for all the users in the userlist.txt, I create a new variable '$MailboxUsers' and I use that to store the output of the 'get-user' query. And, I only want users with a UserMailbox. We do have users with no mailbox or shared mailboxes. And, 'Get-User' has all the data (department, title etc...) that I need.
 
 #### Second query
 
@@ -121,11 +121,11 @@ Foreach ($user in $mailboxUsers) {
 }
 ```
 
-For all the users with a mailbox, I set the variable $UserPrin to the userPrincipalName and, I create a new variable called 'Stats' and use that to hold all the MailboxStatistiscs.
+For all the users with a mailbox, I set the variable $UserPrin to the userPrincipalName and, I create a new variable called 'Stats' and use that to hold the data from the 'Get-MailboxStatistics' cmdlet.
 
 ### Step 3 - Create a property table.
 
-Create a table that holds all the relevant data.
+Create a table that holds all the relevant data. 
 
 ```PowerShell
 $Properties = @{
@@ -138,7 +138,7 @@ $Properties = @{
 } # End Property Block
 ```
 
-Next we create a new psobject with the property block.
+Next we create a new psobject with the property block and add every object to the array. One object for each user. (I can finally get to use that empty array!)
 
 ```PowerShell
 $Results += New-Object psobject -Property $properties
@@ -154,8 +154,10 @@ $Results | Select-Object Logon,Name,Department,eMail,LoggedIn,@{name=”MailBoxS
 
 ## Wrapping things up
 
-Export these results to a csv and the result is almost magical!
+Export these results to a csv/excel document and we're good!
 
 ![Image of result](https://i2.wp.com/codeinblue.files.wordpress.com/2017/08/7.png)
+
+I'm currently writting an Office365 module designed for multiple tasks. So make sure to come back!
 
 [Go back](https://mufana.github.io/blog)
