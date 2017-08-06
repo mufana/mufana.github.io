@@ -7,7 +7,7 @@ date: 2017-08-06
 
 ## Background
 
-Recently I found the [blog](automating-with-jenkins-and-powershell-on-windows-part-1) from 'Matthew Hodgkins' about setting up a Jenkins automation server and do stuff with PowerShell. Cool stuff! so definitely read that post!
+Recently I found the [blog](https://hodgkins.io/automating-with-jenkins-and-powershell-on-windows-part-1) from 'Matthew Hodgkins' about setting up a Jenkins automation server and do stuff with PowerShell. Cool stuff! so definitely read that post!
 
 ### Use cases
 
