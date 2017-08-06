@@ -34,15 +34,16 @@ Of course! and there are more arguments to do just that.
 
 Last, my experience with scripts is that they literally are all over the place. On every server in your infrastructure, scripts are stored. At some point nobody knows what they do, if they still work, who wrote them. And; what if something in your infrastructure breaks and you know it's caused by a script!? 
 
-Now is definitely the time to work professionaly and use some form of Source Control and at least, store all your scripts in one place and describe what they do. (or break).
+Now is definitely the time to work professionaly and use some form of Source Control or at least, store all your scripts in one place and describe what they do. (or break).
 
 ### Or, use Git and integrate Git with an Automation Server
 
-Since I have to automate a small portion of my company's 'onboard and exit' process, there are lots of scripts to be build. (I know, Identity Management and RBAC? Yes! we have that. Limited.) And, I do want to do this the good way. Meaning:
+Since I have to automate a small portion of my company's 'onboard and exit' process, there are lots of scripts to be build. (I know, Identity Management and RBAC? Yes! we have that. Limited.) And, I do want to do this the right way. Meaning:
 
 * Write pester tests for all my scripts
 * Write the Help documentation
 * Use Source Control
+* Store and execute all scripts from one server
 
 ## So, Jenkins it is!
 
