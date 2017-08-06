@@ -18,7 +18,7 @@ Currently I'm working on a few projects that involve loads of PowerShell scripti
 And that's where PowerShell comes to the rescue once again.
 Imagine a script (currently writing a blog about it) that creates homefolders and sets the owner rights!? Imagine! wouldn't that be a sight! Truth be told. No it wouldn't. Since this is something everybody (with a little common sense) would do. Unless you love to do the same trick over and over.
 
-### However
+### Why not use Windows Taks Scheduler
 
 So, we have the script that does the job for us. Next it would be easy to schedule with the Task Scheduler on a server. 
 
@@ -32,7 +32,17 @@ Of course! and there are more arguments to do just that.
 * Pester tests can also be stored and executed from Jenkins.
 * Anybody (with access rights to Jenkins) can excecute the script.
 
-Since I have to automate a small portion of my company's 'onboard and exit' process, there are lots of scripts to be build. (I know, Identity Management and RBAC? Yes! we have that. Limited.)
+Last, my experience with scripts is that they literally are all over the place. On every server in your infrastructure, scripts are stored. At some point nobody knows what they do, if they still work, who wrote them. And; what if something in your infrastructure breaks and you know it's caused by a script!? 
+
+Now is definitely the time to work professionaly and use some form of Source Control and at least, store all your scripts in one place and describe what they do. (or break).
+
+### Or, use Git and integrate Git with an Automation Server
+
+Since I have to automate a small portion of my company's 'onboard and exit' process, there are lots of scripts to be build. (I know, Identity Management and RBAC? Yes! we have that. Limited.) And, I do want to do this the good way. Meaning:
+
+* Write pester tests for all my scripts
+* Write the Help documentation
+* Use Source Control
 
 ## So, Jenkins it is!
 
@@ -76,7 +86,7 @@ It is wise to do some sort of error handling in your script. Otherwise, Jenkins 
 
 ## Wrapping things up
 
-So, I think this might be a nice solution for and a good step forward in order to maintain a few important scripts.
+So, I think this might be a nice solution for my and my collegue's and an important step forward in order to maintain PowerShell scripts.
 
 But, I'm open for suggestions! 
 
