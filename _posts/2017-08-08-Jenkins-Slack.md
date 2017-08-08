@@ -7,7 +7,7 @@ date: 2017-08-08
 
 ## Background
 
-I've been using Slack for quite some time now. Mostly during Windows Server Updates. Whenever an update installed, a few PowerShell scripts are executed to check wether that particulair server is still running accordingly. These checks include:
+I've been using Slack for quite some time now. Mostly during Windows Server Updates. Whenever an update is installed on a server, a few PowerShell scripts are executed to check wether that particulair server is still running accordingly. These checks include:
 
 * Server still online.
 * Server still member of the correct Active Directory domain.
