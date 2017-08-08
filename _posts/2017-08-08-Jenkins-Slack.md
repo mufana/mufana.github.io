@@ -219,7 +219,7 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
     ![Success](https://codeinblue.files.wordpress.com/2017/08/s27.png)
 
-15. To proof that the tasks worked as aspected:
+15. To proof that the task worked as aspected:
 
     ![proof](https://codeinblue.files.wordpress.com/2017/08/s30.png)
 
@@ -227,6 +227,6 @@ That's pretty much there is to it when it comes to the instruction to setup Jenk
 
 ## Wrapping up
 
-There are many use cases where Slack might come in handy. For instance; Pester testing. When all your colleagues use Slack for day2day communcation, the outcome of Pester tests in that same channel might prove to be a worthy asset. But Slack also has a Nagios plugin. So you could use it as an extension of your monitoring solution. 
+There are many use cases where Slack might come in handy. For instance; Pester testing. Jenkins is a true automation server / CI/CD tool. When all your colleagues use Slack for day2day communication, the outcome of Jenkins tasks in that Slack might prove to be a worthy asset.
 
 [Go back](https://mufana.github.io/blog)
