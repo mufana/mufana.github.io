@@ -219,6 +219,10 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
     ![Success](https://codeinblue.files.wordpress.com/2017/08/s27.png)
 
+15. To proof that the tasks worked as aspected:
+
+    ![proof](https://codeinblue.files.wordpress.com/2017/08/s30.png)
+
 That's pretty much there is to it when it comes to the instruction to setup Jenkins -> Slack integration.
 
 ## Wrapping up
