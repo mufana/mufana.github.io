@@ -136,7 +136,7 @@ Wasn't that difficult! Both Jenkins and Slack are configured and it's time to ha
 
 ### Now Cut Me Some Slack!
 
-I've already created a task in Jenkins. _Create File_. This is an example from the blogpost of: 'Matthew Hodgkins'. Link [here](automating-with-jenkins-and-powershell-on-windows-part-1) I will use this example in the instruction below.
+I've already created a task in Jenkins. _Create File_. This is an example from the blogpost of: 'Matthew Hodgkins'. Link [here](https://hodgkins.io/automating-with-jenkins-and-powershell-on-windows-part-1) I will use this example in the instruction below.
 
 1. Login to the Jenkins server.
 
