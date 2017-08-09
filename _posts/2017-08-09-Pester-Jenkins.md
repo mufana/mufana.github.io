@@ -7,7 +7,7 @@ date: 2017-08-09
 
 ## Background
 
-Everytime I have to write a script I use the same approach. That approach has some similarities with __*Agile*__. Meaning; I write small blocks of code, test these blocks and _when everything works as aspected_ place the code into the script I'm developing.In Agile terms you can call this a __*sprint*__. I repeat these steps until my script is finished. Now, this works fine for me. Using this method I limit the possibilty of crappy code I don't need. And if a block of code doesn't work or needs to be adjusted, I can simply replace it with another one. 
+Everytime I have to write a script I use the same approach. That approach has some similarities with __*Agile*__. Meaning; I write small blocks of code, test these blocks and _when everything works as expected_ place the code into the script I'm developing.In Agile terms you can call this a __*sprint*__. I repeat these steps until my script is finished. Now, this works fine for me. Using this method I limit the possibilty of crappy code I don't need. And if a block of code doesn't work or needs to be adjusted, I can simply replace it with another one. 
 
 ### Pester / Test Driven Deployment
 
@@ -22,7 +22,7 @@ Now, I'm in the midst of learning Pester. So I'm not going in depth as there's s
 
 ### Jenkins
 
-Jenkins is a true automation platform. Following the concepts of Continuous Integration / Testing and Deployment. As such, it is __**the**__ place to store and execute Pester tests. 
+Jenkins is a true automation platform. Following the concepts of Continuous Integration / Testing and Deployment. As such, it is __*the*__ place to store and execute Pester tests. 
 
 ### Write the code
 
