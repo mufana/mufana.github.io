@@ -169,6 +169,22 @@ Notice that the failed test also shows a _Success_. That's not good. A failed te
 
     ![RunAgain](https://codeinblue.files.wordpress.com/2017/08/p14.png)
 
+## What about Slack
+
+Setting-Up the Slack notifications is easy. 
+
+16. Click on the task from the Jenkins mainpage.
+
+17. Browse to the: _Post build actions_ section and add _Slack Notifications_.
+
+18. In this example I only want notifications for a _success_ and _failure_.
+
+    ![Slack](https://codeinblue.files.wordpress.com/2017/08/p15.png)
+
+19. Run the task again and voila!
+
+    ![Voila](https://codeinblue.files.wordpress.com/2017/08/p16.png)
+
 ## Wrapping up
 
 This is just a very easy example of how to incorporate Pester on the Jenkins platform. But it gives a little insight into the possibilities of Jenkins and Pester.
