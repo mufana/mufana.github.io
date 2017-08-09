@@ -17,7 +17,7 @@ Pester is a completely different way to creating scripts. With Pester you first:
 * Run your test. (Which obviously failes).
 * Create your script.
 * Run the test again. (Which should lead to a success).
-    
+
 Now, I'm in the midst of learning Pester. So I'm not going in depth as there's still much to learn. Instead, I wil focus on Jenkins. 
 
 ### Jenkins
@@ -26,7 +26,7 @@ Jenkins is a true automation platform. Following the concepts of Continuous Inte
 
 ### Write the code
 
-For this example I've created a very basic Pester test. A simple; _Describe_ that aspects the following output: _This is a very simple pester test!_.
+For this example I've created a very basic Pester test. A simple; _Describe_ that expects the following output: _This is a very simple pester test!_.
 
 ```PowerShell
 Describe "Get-PesterTest" {
