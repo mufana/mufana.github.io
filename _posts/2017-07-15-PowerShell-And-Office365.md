@@ -17,7 +17,7 @@ Before I could begin scripting I had to know what to look for in the Office365 e
 
 Therefore I used a script that I had used before.
 
-```PowerShell
+```powershell
 $pass = ConvertTo-SecureString "Password" -AsPlainText -Force
 $UserCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "UserID@onmicrosoft.com", $pass
 $Session = New-PSSession `
@@ -35,7 +35,7 @@ This script connects to the Office365 environment and will import all necessary 
 
 Want to know which cmdlets are available in the module?
 
-```PowerShell
+```powershell
 Get-Command -Module tmp*
 ```
 
@@ -45,7 +45,7 @@ Get-Command -Module tmp*
 
 I noticed a cmdlet called 'Get-Mailbox'. That could be the one i'd need. 
 
-```PowerShell
+```powershell
 Get-Mailbox 'Mufana' | Select *
 ```
 
@@ -55,7 +55,7 @@ That gives me lots of information. But not quite what I'm looking for.
 
 Lets search for all cmdlets that start with the verb 'get' and have a noun with word 'mailbox' in it.
 
-```PowerShell
+```powershell
 Get-Command -verb get -noun mailbox*
 ```
 
@@ -65,7 +65,7 @@ Nice! A potenial one. 'Get-MailboxStatistics'.
 
 Lets give that puppy a try!
 
-```PowerShell
+```powershell
 Get-MailboxStatistics Mufana | select *
 ```
 
@@ -79,19 +79,19 @@ And yes! there it was! 'TotalItemSize'. Exactly what I'm after!
 
 Create a list of all users I need to query. Since we're using Office365, I decided to get the userlist also from Office365 instead of our local Active Directory. Therefore I didn't had to query a user who existed in our local Active Directory but not in Office365. Yes, it happens. Hate it.
 
-```PowerShell
+```powershell
 (get-user -ResultSize $Resultsize |? {$_.recipienttype -eq "userMailBox"}).displayname | out-file C:\Temp\Userlist.txt"
 ```
 
 ### Step 2 - Importing the userlist to use in the script
 
-```PowerShell
+```powershell
 $Users = (Get-Content "C:\Temp\Userslist.txt")
 ```
 
  Create an empty array to hold the results. I almost always do this in every script I write. I'm a sucker for empty array's.
 
-```PowerShell
+```powershell
 $Results = @()
 ```
 
@@ -105,7 +105,7 @@ Now, I have to query two different objects within Office365.
 
 #### First query
 
-```PowerShell
+```powershell
 Foreach ($usr in $Users) {$MailboxUsers = Get-User $usr | Where-Object {$_.recipienttype -eq "UserMailbox"}
 ```
 
@@ -114,7 +114,7 @@ Well, for all the users in the userlist.txt, I create a new variable '$MailboxUs
 
 #### Second query
 
-```PowerShell
+```powershell
 Foreach ($user in $mailboxUsers) {
     $UserPrin = $user.userprincipalname
     $Stats = Get-MailboxStatistics $UserPrin
@@ -127,7 +127,7 @@ For all the users with a mailbox, I set the variable $UserPrin to the userPrinci
 
 Create a table that holds all the relevant data. 
 
-```PowerShell
+```powershell
 $Properties = @{
     Logon = $user.name
     Name = $user.displayname
@@ -140,7 +140,7 @@ $Properties = @{
 
 Next we create a new psobject with the property block and add every object to the array. One object for each user. (I can finally get to use that empty array!)
 
-```PowerShell
+```powershell
 $Results += New-Object psobject -Property $properties
 ```
 
@@ -148,7 +148,7 @@ $Results += New-Object psobject -Property $properties
 
 The last step is to put all things together and build the output. As a bonus we convert the mailboxsize to a more 'friendly' output in GB. 
 
-```PowerShell
+```powershell
 $Results | Select-Object Logon,Name,Department,eMail,LoggedIn,@{name=”MailBoxSize (GB)”; expression={[math]::Round( ` ($_.mailboxsize.ToString().Split(“(“)[1].Split(” “)[0].Replace(“,”,””)/1GB),2)}}
 ```
 
