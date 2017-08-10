@@ -45,7 +45,7 @@ However; there’s always a catch. I strongly recommend that you use full cmdlet
 
 That easy. Simply type:
 
-```PowerShell
+```powershell
 Get-Alias
 ```
 
@@ -77,7 +77,7 @@ Why cmdlets and not commands? PowerShell has lots of different cmdlets. Over 130
 
 Simply type:
 
-```PowerShell
+```powershell
 Get-Command
 ````
 
