@@ -1,11 +1,12 @@
 ---
 title: "Unblock files with PowerShell"
-date: 2017-08-10excerpt: "Unblock files with a PowerShell oneliner!"
-tags:
-- PowerShell
-categories:
-- powershell
+date: 2017-08-10
+excerpt: "Unblock files with a PowerShell oneliner!"
 comments: true
+tags: 
+- PowerShell 
+- SQL
+Catagories: PowerShell
 author_profile: true
 ---
 
