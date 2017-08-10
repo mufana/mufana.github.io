@@ -276,7 +276,7 @@ The output looks similair to this:
 
 ![finally](https://codeinblue.files.wordpress.com/2017/08/sql7.png)
 
-The complete script:
+### The complete script:
 
 ```powershell
 $header=@"
@@ -325,6 +325,4 @@ Send-MailMessage -SmtpServer smtpserver `
 -from someone@somedomain.com
 ```
 
-
-
-
+[Go back](https://mufana.github.io/blog)

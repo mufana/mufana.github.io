@@ -46,7 +46,7 @@ So, time to open up a PowerShell console. Change directory to: ```C:\Temp\Pester
 Invoke-Pester
 ```
 
-This will invoke all pester tests in that particulair directory. There's only one in my case so it just executes the: _Get-PesterTest.Tests.ps1_. 
+This will invoke all pester tests in that particulair directory. There's only one in my case so it just executes the: ```Get-PesterTest.Tests.ps1``` 
 
 So, does it work!?
 
@@ -67,7 +67,7 @@ start-sleep -seconds 10
 
 ### Noticable stuff
 
-* I've added a _start-Sleep -Seconds 10_ to make things a little more visible in Jenkins. 
+* I've added a ```start-Sleep -Seconds 10``` to make things a little more visible in Jenkins. 
 * I've turned this function into a module: __Get-PesterTest__ and saved it to: ```C:\Program Files\WindowsPowerShell\Modules\Get-PesterTest```. This makes the function available when I start a PowerShell console or when the Pester test is executed from the Jenkins server.
 
 Let's start a new PowerShell console and invoke the pester script.
@@ -126,7 +126,7 @@ This is where things are getting serious. Jenkins is a true automation platform 
 
     ![Completetask](https://codeinblue.files.wordpress.com/2017/08/p10.png)
 
-10. In the _Console Output_ window you will see the same output as on PowerShell Console.
+10. In the ```Console Output``` window you will see the same output as on PowerShell Console.
 
     ![ConsoleOutput](https://codeinblue.files.wordpress.com/2017/08/p11.png)
 
@@ -147,7 +147,7 @@ Remember the output of the test has to be: _This is a very simple pester test!_.
 
 11. Go back to Jenkins and run the task again.
 
-12. Open the _Console Output_ to see the results.
+12. Open the ```Console Output``` to see the results.
 
     ![Output2](https://codeinblue.files.wordpress.com/2017/08/p12.png)
 
@@ -165,7 +165,7 @@ Notice that the failed test also shows a _Success_. That's not good. A failed te
 
     The ```EnableExit``` switch is used to _fail_ a build whenever a test has failed.
 
-15. Save the task and run it again. This time when we open the _Console Output_ a real _failure_ will be displayed.
+15. Save the task and run it again. This time when we open the ```Console Output``` a real _failure_ will be displayed.
 
     ![RunAgain](https://codeinblue.files.wordpress.com/2017/08/p14.png)
 

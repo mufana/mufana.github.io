@@ -46,27 +46,27 @@ The first step in the setup process is to configure Slack. Therefore:
 
 1. Login to Slack
 
-2. Create a new Channel for Jenkins. In the image below I named my channel #jenkins
+2. Create a new Channel for Jenkins. In the image below I named my channel ```#jenkins```
 
     ![Channel](https://codeinblue.files.wordpress.com/2017/08/s2.png)
 
 3. Open the newly created channel.
 
-4. Click the _channel configuration button_ and click: _Add an app_.
+4. Click the: ```channel configuration``` button_ and click: ```Add an app```
 
     ![Addapp](https://codeinblue.files.wordpress.com/2017/08/s3.png)
 
-5. In the search bar type: _jenkins_.
+5. In the search bar type: ```jenkins```
 
-6. Select the _Jenkins CI_ app and press enter.
+6. Select the ```Jenkins CI``` app and press enter.
 
     ![JenkinsApp](https://codeinblue.files.wordpress.com/2017/08/s4.png)
 
-7. Click the _Install_ button.
+7. Click the ```Install``` button.
 
     ![Install](https://codeinblue.files.wordpress.com/2017/08/s5.png)
 
-8. Select the _#jenkins_  channel you've created in step 2 and click: _Add Jenkins CI integration_.
+8. Select the ```#jenkins```  channel you've created in step 2 and click: ```Add Jenkins CI integration```
 
     ![Config](https://codeinblue.files.wordpress.com/2017/08/s6.png)
 
@@ -80,33 +80,33 @@ So far for the Slack configuration.
 
 1. Login to Jenkins.
 
-2. Go to _Manage Jenkins_.
+2. Go to ```Manage Jenkins```
 
     ![Manage](https://codeinblue.files.wordpress.com/2017/08/s8.png) 
 
-3. Click on _Manage Plugins._
+3. Click on ```Manage Plugins```
 
     ![Plugin](https://codeinblue.files.wordpress.com/2017/08/s9.png)
 
-4. Click on the _Available Plugins_ tab and filter on: _Slack_
+4. Click on the ```Available Plugins``` tab and filter on: ```Slack```
 
     ![Available](https://codeinblue.files.wordpress.com/2017/08/s10.png)
 
-5. Click on _Download now and install after restart_ to download the plugin.
+5. Click on ```Download now and install after restart``` to download the plugin.
 
-6. Click the checkbox next to _Restart Jenkins when installation is complete..._
+6. Click the checkbox next to ```Restart Jenkins when installation is complete...```
 
     ![Download](https://codeinblue.files.wordpress.com/2017/08/s11.png)
 
-7. This will restart the Jenkins server. If Jenkins is set to auto refresh, it will automatically refresh the webpage. If not: _Enable auto refresh_ or press _F5_.
+7. This will restart the Jenkins server. If Jenkins is set to auto refresh, it will automatically refresh the webpage. If not: ```Enable auto refresh``` or press ```F5```
 
     ![Disbale](https://codeinblue.files.wordpress.com/2017/08/s12.png)
 
-8. When Jenkins is started; go to _Manage Jenkins -> Configure System_.
+8. When Jenkins is started; go to ```Manage Jenkins -> Configure System```
 
     ![EnableSlack](https://codeinblue.files.wordpress.com/2017/08/s13.png)
 
-9. Browse to the _Global Slack Notifier Settings_ section.
+9. Browse to the ```Global Slack Notifier Settings``` section.
 
     ![Slacknotify](https://codeinblue.files.wordpress.com/2017/08/s14.png)
 
@@ -120,7 +120,7 @@ So far for the Slack configuration.
 
     * Channel (The channel you created in _step 2_ of the Slack configuration above).
 
-11. Click _Test Connection_ to test if the configuration works as aspected.
+11. Click ```Test Connection``` to test if the configuration works as aspected.
 
     ![Test](https://codeinblue.files.wordpress.com/2017/08/s15.png)
 
@@ -140,11 +140,11 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
 1. Login to the Jenkins server.
 
-2. Click the task. (In my example _Create File_.)
+2. Click the task. (In my example ```Create File```)
 
     ![Task](https://codeinblue.files.wordpress.com/2017/08/s18.png)
 
-3. Click _Configure_.
+3. Click ```Configure```
 
     ![ConfigTask](https://codeinblue.files.wordpress.com/2017/08/s28.png)
 
@@ -152,19 +152,19 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
     ![Code](https://codeinblue.files.wordpress.com/2017/08/s19.png)
 
-5. Go to the _Add post-build action_ section.
+5. Go to the ```Add post-build action``` section.
 
     ![Postbuild](https://codeinblue.files.wordpress.com/2017/08/s20.png)
 
-6. Click the drop-down menu and select _Slack Notifications_.
+6. Click the drop-down menu and select ```Slack Notifications```
 
     ![Dropdown](https://codeinblue.files.wordpress.com/2017/08/s21.png)
 
-7. Now, I only want to know if a Task is successfull. So I've set the checkbox next to _Notify Success_. 
+7. Now, I only want to know if a Task is successfull. So I've set the checkbox next to ```Notify Success``` 
 
     ![Confignotify](https://codeinblue.files.wordpress.com/2017/08/s22.png)
 
-8. Click _Save_ in orde to safe the configuration.
+8. Click ```Save in orde to safe the configuration.
 
 9. Go back to the Jenkins homepage.
 
