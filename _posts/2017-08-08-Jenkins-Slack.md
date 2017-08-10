@@ -164,7 +164,7 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
     ![Confignotify](https://codeinblue.files.wordpress.com/2017/08/s22.png)
 
-8. Click ```Save in orde to safe the configuration.
+8. Click ```Save``` in orde to safe the configuration.
 
 9. Go back to the Jenkins homepage.
 
@@ -203,11 +203,11 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
     ![Works](https://codeinblue.files.wordpress.com/2017/08/s24.png)                
 
-11. Back to Jenkins! Click the _Schedule a build_ button.
+11. Back to Jenkins! Click the ```Schedule a build``` button.
 
     ![Schedbuild](https://codeinblue.files.wordpress.com/2017/08/s29.png)
 
-12. Fill in the parameters and click _Build_.
+12. Fill in the parameters and click ```Build```
 
     ![Params](https://codeinblue.files.wordpress.com/2017/08/s25.png)
 
