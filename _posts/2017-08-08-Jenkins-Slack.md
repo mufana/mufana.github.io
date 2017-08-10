@@ -172,7 +172,7 @@ I've already created a task in Jenkins. _Create File_. This is an example from t
 
     a. Open a new PowerShell ISE and copy-paste the code from below.
 
-    ```PowerShell
+    ```powershell
     Function Create-File {
 
     Param (

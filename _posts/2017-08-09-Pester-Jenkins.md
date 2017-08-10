@@ -28,7 +28,7 @@ Jenkins is a true automation platform. Following the concepts of Continuous Inte
 
 For this example I've created a very basic Pester test. A simple; _Describe_ that expects the following output: _This is a very simple pester test!_.
 
-```PowerShell
+```powershell
 Describe "Get-PesterTest" {
     It "outputs 'This is a very simple pester test!'" {
         Get-PesterTest | Should Be 'This is a very simple pester test!'
@@ -42,7 +42,7 @@ I saved this script as: _Get-PesterTest.Tests.ps1_ in: _C:\Temp\Pester\2_.
 
 So, time to open up a PowerShell console. Change directory to: _C:\Temp\Pester\2_ and type:
 
-```PowerShell
+```powershell
 Invoke-Pester
 ```
 
@@ -58,7 +58,7 @@ Cleary not. As you see the test generated a failure. Obviously, since I didn't w
 
 Now I know that my first test failed. (Which is good!) I can move on to actually build the function. That function should output: _This is a very simple pester test!_. 
 
-```PowerShell
+```powershell
 Function Get-PesterTest {
 start-sleep -seconds 10
     "This is a very simple pester test!"
@@ -72,7 +72,7 @@ start-sleep -seconds 10
  
 Let's start a new PowerShell console and invoke the pester script.
 
-```PowerShell
+```powershell
 Invoke-Pester
 ```
 
@@ -106,7 +106,7 @@ This is where things are getting serious. Jenkins is a true automation platform 
 
 5. In the command window enter:
 
-    ```PowerShell
+    ```powershell
     Invoke-Pester "PathToPesterFolder"
     ```
 
@@ -136,7 +136,7 @@ So far for a _Passed_ test. But what if a test fails? Well, let's see what happe
 
 To demonstrate this I've made some adjustments to my: _Get-PesterTest_ module function.
 
-```PowerShell
+```powershell
 function Get-PesterTest {
 start-sleep -seconds 10
     "This will make a test fail!"
