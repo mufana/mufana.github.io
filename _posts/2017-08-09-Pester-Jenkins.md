@@ -7,7 +7,7 @@ date: 2017-08-09
 
 ## Background
 
-Everytime I have to write a script I use the same approach. That approach has some similarities with __*Agile*__. Meaning; I write small blocks of code, test these blocks and _when everything works as expected_ place the code into the script I'm developing.In Agile terms you can call this a __*sprint*__. I repeat these steps until my script is finished. Now, this works fine for me. Using this method I limit the possibilty of crappy code I don't need. And if a block of code doesn't work or needs to be adjusted, I can simply replace it with another one. 
+Everytime I have to write a script I use the same approach. That approach has some similarities with __*Agile*__. Meaning; I write small blocks of code, test these blocks and _when everything works as expected_ place the code into the script I'm developing.In Agile terms you can call this a __*sprint*__. I repeat these steps until my script is finished. Now, this works fine for me. Using this method I limit the possibilty of crappy code I don't need. And if a block of code doesn't work or needs to be adjusted, I can simply replace it with another one.
 
 ### Pester / Test Driven Deployment
 
@@ -26,7 +26,7 @@ Jenkins is a true automation platform. Following the concepts of Continuous Inte
 
 ### Write the code
 
-For this example I've created a very basic Pester test. A simple; _Describe_ that expects the following output: _This is a very simple pester test!_.
+For this example I've created a very basic Pester test. A simple; ```Describe``` that expects the following output: _This is a very simple pester test!_.
 
 ```powershell
 Describe "Get-PesterTest" {
@@ -36,11 +36,11 @@ Describe "Get-PesterTest" {
 }
 ````
 
-I saved this script as: _Get-PesterTest.Tests.ps1_ in: _C:\Temp\Pester\2_.
+I saved this script as: ```Get-PesterTest.Tests.ps1``` in: ```C:\Temp\Pester\2```.
 
 ### Testing 1,2,3 - Is this thing on?
 
-So, time to open up a PowerShell console. Change directory to: _C:\Temp\Pester\2_ and type:
+So, time to open up a PowerShell console. Change directory to: ```C:\Temp\Pester\2``` and type:
 
 ```powershell
 Invoke-Pester
@@ -68,7 +68,7 @@ start-sleep -seconds 10
 ### Noticable stuff
 
 * I've added a _start-Sleep -Seconds 10_ to make things a little more visible in Jenkins. 
-* I've turned this function into a module: __Get-PesterTest__ and saved it to: _C:\Program Files\WindowsPowerShell\Modules\Get-PesterTest_. This makes the function available when I start a PowerShell console or when the Pester test is executed from the Jenkins server. 
+* I've turned this function into a module: __Get-PesterTest__ and saved it to: ```C:\Program Files\WindowsPowerShell\Modules\Get-PesterTest```. This makes the function available when I start a PowerShell console or when the Pester test is executed from the Jenkins server.
  
 Let's start a new PowerShell console and invoke the pester script.
 
@@ -96,7 +96,7 @@ This is where things are getting serious. Jenkins is a true automation platform 
 
     ![New-Item](https://codeinblue.files.wordpress.com/2017/08/p4.png)
 
-3. Enter the name for the new item. In my case: _Pester_Get-PesterTest_. Make sure you select: _Freestyle project_.
+3. Enter the name for the new item. In my case: ```Pester_Get-PesterTest```. Make sure you select: _Freestyle project_.
 
     ![Name](https://codeinblue.files.wordpress.com/2017/08/p5.png)
 
