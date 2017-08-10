@@ -52,11 +52,11 @@ So, does it work!?
 
 ![Fail](https://codeinblue.files.wordpress.com/2017/08/p2.png)
 
-Cleary not. As you see the test generated a failure. Obviously, since I didn't wrote the function. 
+Cleary not. As you see the test generated a failure. Obviously, since I didn't wrote the function.
 
 ### Create the function
 
-Now I know that my first test failed. (Which is good!) I can move on to actually build the function. That function should output: _This is a very simple pester test!_. 
+Now I know that my first test failed. (Which is good!) I can move on to actually build the function. That function should output: _This is a very simple pester test!_.
 
 ```powershell
 Function Get-PesterTest {
@@ -69,7 +69,7 @@ start-sleep -seconds 10
 
 * I've added a _start-Sleep -Seconds 10_ to make things a little more visible in Jenkins. 
 * I've turned this function into a module: __Get-PesterTest__ and saved it to: ```C:\Program Files\WindowsPowerShell\Modules\Get-PesterTest```. This makes the function available when I start a PowerShell console or when the Pester test is executed from the Jenkins server.
- 
+
 Let's start a new PowerShell console and invoke the pester script.
 
 ```powershell
@@ -78,7 +78,7 @@ Invoke-Pester
 
 ![Success](https://codeinblue.files.wordpress.com/2017/08/p3.png)
 
-That is looking promising. 
+That is looking promising.
 
 And my function works from the PowerShell Console.
 
@@ -92,15 +92,15 @@ This is where things are getting serious. Jenkins is a true automation platform 
 
 1. Login to Jenkins.
 
-2. Click: _New Item_.
+2. Click: ```New Item```
 
     ![New-Item](https://codeinblue.files.wordpress.com/2017/08/p4.png)
 
-3. Enter the name for the new item. In my case: ```Pester_Get-PesterTest```. Make sure you select: _Freestyle project_.
+3. Enter the name for the new item. In my case: ```Pester_Get-PesterTest```. Make sure you select: ```Freestyle project```
 
     ![Name](https://codeinblue.files.wordpress.com/2017/08/p5.png)
 
-4. Browse to the _**Build**_ section, click: _Add build step_ and choose: _Windows PowerShell_.
+4. Browse to the _**Build**_ section, click: ```Add build step``` and choose: ```Windows PowerShell```
 
     ![Build Actions](https://codeinblue.files.wordpress.com/2017/08/p6.png)
 
@@ -112,9 +112,9 @@ This is where things are getting serious. Jenkins is a true automation platform 
 
     ![Command](https://codeinblue.files.wordpress.com/2017/08/p7.png)
 
-6. Click _Save_ in order the save the project and go back to the main screen.
+6. Click ```Save``` in order the save the project and go back to the main screen.
 
-7. On the main screen, click _Run_ to execute the task.
+7. On the main screen, click ```Run``` to execute the task.
 
     ![ff](https://codeinblue.files.wordpress.com/2017/08/p8.png)
 
@@ -122,7 +122,7 @@ This is where things are getting serious. Jenkins is a true automation platform 
 
     ![Running](https://codeinblue.files.wordpress.com/2017/08/p9.png)
 
-9. When the task is complete, click the buildnumber and select: _Console Output_.
+9. When the task is complete, click the buildnumber and select: ```Console Output```
 
     ![Completetask](https://codeinblue.files.wordpress.com/2017/08/p10.png)
 
@@ -157,13 +157,13 @@ Remember the output of the test has to be: _This is a very simple pester test!_.
 
 Notice that the failed test also shows a _Success_. That's not good. A failed test should come up as a _Fail_. To accomplish that; we need to make a minor adjustment to the PowerShell command.
 
-13. Open the task, click _Configure_ and browse to the: _Build_ section.
+13. Open the task, click ```Configure``` and browse to the: _Build_ section.
 
-14. In the _Command_ textbox, add the folowing line: _-EnableExit_.
+14. In the _Command_ textbox, add the folowing line: ```-EnableExit```
 
     ![Adjust](https://codeinblue.files.wordpress.com/2017/08/p13.png)
 
-    The _EnabaleExit_ switch is used to _fail_ a build whenever a test has failed.
+    The ```EnableExit``` switch is used to _fail_ a build whenever a test has failed.
 
 15. Save the task and run it again. This time when we open the _Console Output_ a real _failure_ will be displayed.
 
@@ -175,9 +175,9 @@ Setting-Up the Slack notifications is easy.
 
 16. Click on the task from the Jenkins mainpage.
 
-17. Browse to the: _Post build actions_ section and add _Slack Notifications_.
+17. Browse to the: _Post build actions_ section and add ```Slack Notifications```
 
-18. In this example I only want notifications for a _success_ and _failure_.
+18. In this example I only want notifications for a ```success``` and ```failure```
 
     ![Slack](https://codeinblue.files.wordpress.com/2017/08/p15.png)
 

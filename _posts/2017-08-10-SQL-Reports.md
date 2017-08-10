@@ -48,7 +48,7 @@ First: I have to load the correct assembly. Now, this method is deprecated. Howe
 1. Import the SQL Server assembly:
 
 ```powershell
-    [void][System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SMO")
+[void][System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SMO")
 ```
 
 2. Create a new variable ```$SQLServername``` and set it to: ```Localhost```.
