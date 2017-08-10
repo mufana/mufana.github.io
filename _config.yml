@@ -1,6 +1,6 @@
 name: The Dev Shed
 permalink: /blog/:year/:month/:day/:title
-theme: jekyll-theme-cayman
+theme: jekyll-theme-slate
 title: The Dev Corner
 description: For your daily code needs
 
