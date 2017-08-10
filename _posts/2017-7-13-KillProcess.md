@@ -8,7 +8,7 @@ date: 2017-07-13
 *Well this is an easy one... 
 simple open up the PowerShell Console and type:*
 
-```PowerShell
+```powershell
 (Get-Process Notepad).kill()
 ```
 ## And here's a gist!
