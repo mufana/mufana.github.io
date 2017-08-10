@@ -48,7 +48,7 @@ As you can see in the image below, I have two databases. I want to find out whic
 
 To find this out I ran simple 'exec sp who' against the master database.
 
-```SQL
+```sql
 exec sp who
 ```
 
@@ -81,7 +81,7 @@ Instead, I used that time to write a script that does the job for me.
 
 Create vars to hold the path to the different applications
 
-```PowerShell
+```powershell
 $TestAppExe = "Test\Notepad.exe"
 $ProdAppExe = "Prod\Notepad.exe"
 ```
@@ -90,7 +90,7 @@ $ProdAppExe = "Prod\Notepad.exe"
 
 Create a datatable to hold environment name, server, instance, database and executable names.
 
-```PowerShell
+```powershell
 $App = New-Object System.Data.DataTable
 $App.Columns.Add((New-Object System.Data.DataColumn ‘Name’, ([string])))
 $App.Columns.Add((New-Object System.Data.DataColumn ‘SQLServer’, ([string])))
@@ -103,7 +103,7 @@ $App.Columns.Add((New-Object System.Data.DataColumn ‘Executable’, ([string])
 
 Add a row for Test and Production with the correct server/databases/instance names. The columns correspond with the defined columns in step 2.
 
-```PowerShell
+```powershell
 $App.Rows.Add("Test","Lab1","Lab1","TestDB","$TestAppExe")
 $App.Rows.Add("Production","Lab1","Lab1","ProductionDB","$ProdAppExe")
 ```
@@ -119,7 +119,7 @@ The GUI:
 
 The script:
 
-```PowerShell
+```powershell
 Function Get-Environment
 {
 $objForm = New-Object System.Windows.Forms.Form 
@@ -178,7 +178,7 @@ To prevent an administrator to stop an application by accident, I decided to thr
 
 * One to display a messagebox with some 'do you want to continue' questions.
 
-```PowerShell
+```powershell
 Function Show-MsgBox
  
 ($Text,$Title="",[Windows.Forms.MessageBoxButtons]$Button = "OK",           [Windows.Forms.MessageBoxIcon]$Icon="Information"){
@@ -188,7 +188,7 @@ Function Show-MsgBox
 
 * And another function to write specific information to the console.
 
-```PowerShell
+```powershell
 Function Write-Console {
 
     Param (
@@ -205,7 +205,7 @@ Function Write-Console {
 
 To make it easy for someone with no knowledge of PowerShell, I created a *.cmd* file that executes:
 
-```Batch
+```batch
 PowerShell.exe /nameofscript.ps1
 ```
 
@@ -219,7 +219,7 @@ If the admin clicks on 'Production', we need to gather all the information (serv
 
 ![Image of select](https://codeinblue.files.wordpress.com/2017/02/21.png)
 
-```PowerShell
+```powershell
 $Environment = Get-Environment
 Write-Console "Chosen environment: $Environment"
 If((Show-MsgBox -Title "Chosen environmentis: $Environment" -Text "The Chosen environment is: <$Environment> Continue!?" -Button YesNo -Icon information) -eq 'No'){Exit}
@@ -233,14 +233,14 @@ else{
 
 The 'Get-Environment' function gets the selected environment. (Remember the rows from step 3?)
 
-```PowerShell
+```powershell
 $App.Rows.Add("Test","Lab1","Lab1","TestDB","$TestAppExe")
 $App.Rows.Add("Production","Lab1","Lab1","ProductionDB","$ProdAppExe")
 ```
 
 Based on the selection I build new vars to contain the server,database,instance belonging to the selection. The selection is stored in a var called '$Chosen'.
 
-```PowerShell
+```powershell
 # Set the local vars
 $SQLServer = $chosen.SQLServer
 $SQLInstance = $chosen.SQLInstance
@@ -253,7 +253,7 @@ $Outfile = "C:\Scripts\ActiveComputers.txt"
 
 Next is to setup the remote session to the SQL server and actually run the 'sp who' query against the database.
 
-```PowerShell
+```powershell
 # Create the new PowerShell session and pass the local vars to the remote sessions with $Using    
 $Session = New-PSSession -ComputerName $SQLServer
 $Connections = Invoke-Command -Session $Session -ScriptBlock { Invoke-SQLcmd -query "exec sp_who" -Serverinstance `
@@ -268,7 +268,7 @@ $ActiveHosts = $temp.hostname | sort-object -Unique
 
 Notice the $Using variable?
 
-```PowerShell
+```powershell
 Invoke-Command -Session $Session -ScriptBlock { Invoke-SQLcmd -query "exec sp_who" -Serverinstance `
  $Using:SQLInstance -Database $Using:SQLDatabase }
  ```
@@ -278,7 +278,7 @@ Invoke-Command -Session $Session -ScriptBlock { Invoke-SQLcmd -query "exec sp_wh
  Now, the SQL query 'sp who' stores the output in variable called '$temp'.
  Since the application sometimes creates four or more connections Ffrom the same client) to the database, I have to filter on Unique hostnames.
 
- ```PowerShell
+ ```powershell
  # Sort active connections based on machinename
 $Temp = $Connections |Where-object {$_.hostname -like "*Lab*"}
 $ActiveHosts = $temp.hostname | sort-object -Unique
@@ -291,7 +291,7 @@ The last step is to stop the application on the host where it's running.
 To do this we simply add a 'foreach' constructor and call taskkill.
 We write every kill to the console.
 
-```PowerShell
+```powershell
 Foreach ($Comp in $ActiveHosts) {
     taskkill /s $Comp /IM "Notepad.exe" 
     Write-Console "Application.exe closed op: $Comp"
@@ -308,7 +308,7 @@ I wrote this script in less then an hour. And both me and my colleagues use this
 
 ## The complete script
 
-```PowerShell
+```powershell
 #Requires -Version 3.0
 
 <#
