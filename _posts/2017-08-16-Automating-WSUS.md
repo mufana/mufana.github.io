@@ -53,9 +53,9 @@ Get-Help Test-NetConnection
 
 ![help](https://codeinblue.files.wordpress.com/2017/08/ws2.png)
 
- The ```ComputerName``` switch is a string and doen not support the input of multiple ComputerNames. Otherwise it would look like this: ```<string[]>``` The square brackets indicate that the string supports multiple values.
+ The ```ComputerName``` switch is a string and does not support the input of multiple ComputerNames. Otherwise it would look like this: ```<string[]>``` The square brackets indicate that the string supports multiple values.
 
-It does however support input from the pipeline. So, If I have a list of computernames in a text file, I can pipe the content of that text file to ```Test-NetConnection```. 
+It does however support input from the pipeline. So, If I have a list of computernames in a text file, I can pipe the contents of that text file to ```Test-NetConnection```. 
 
 ![getcontent](https://codeinblue.files.wordpress.com/2017/08/ws4.png)
 
@@ -70,20 +70,20 @@ Nice! that works! However I don't like the output. Lots of information I don't n
 
 That returns a ```True``` of ```False```. Which is exactly what I'm after.
 
-#### Step 2 - Should I start or go
+#### Step 2 - Should I start or should I go
 
-Next is to find out if all autostart Windows services are indeed started. 
+Next is to find out if all autostart Windows services are indeed running.
 
 It's important to know that PowerShell actually provides two ways to get information about Windows services.
 
 * Get-Service
 * Get-WmiObject win32_service
 
-The difference __at least, that is how I see it__ is that ```Get-Service``` works best of you deal with one particulair service. ```Get-WmiObject``` on the other hand works well with multiple services and provides more detailed information.
+The difference __at least, that is how I see it__ is that ```Get-Service``` works best if you deal with one particulair service. ```Get-WmiObject``` on the other hand works well with multiple services and provides more detailed information.
 
 I always tend to use ```Get-WmiObject```.
 
-#### If you're new to PowerShell, play around with the ```Get-Service``` cmdlet. It's a great cmdlet to learn or enhance your scripting abilities.
+_If you're new to PowerShell, play around with the ```Get-Service``` cmdlet. It's a great cmdlet to learn or enhance your scripting abilities._
 
 To find out if all services that autostart are indeed running I use to following line of code.
 
@@ -95,7 +95,7 @@ This will give me the following output:
 
 ![Output](https://codeinblue.files.wordpress.com/2017/08/ws6.png)
 
-### What about SQL or specific services
+### What about SQL or other specific services
 
 For SQL (both the agent and instance) and the Windows Firewall, I use a very similar line of code.
 
@@ -103,7 +103,7 @@ For SQL (both the agent and instance) and the Windows Firewall, I use a very sim
 (Get-WmiObject win32_service -ComputerName mufana | where {$_.name -like "SQLAgent$*"})
 ```
 
-#### You do have to find out how your SQL agent / instance services are called
+_You do have to find out how your SQL agent / instance services are called._
 
 ### Step 3 - Da Da Di Dom Domain
 
@@ -111,11 +111,10 @@ To be thorough I also want to know if a server still is a member of the correct 
 
 As with ```Get-Service``` there are multiple ways to do this.
 
-```(Get-NetConnectionProfile).name```
+* (Get-NetConnectionProfile).name
+* (Get-WmiObject -class win32_computersystem -ComputerName localhost).domain
 
-```(Get-WmiObject -class win32_computersystem -ComputerName localhost).domain```
-
-Since I'm already querying wmi I decided to stick with that. However, there's no 'wrong' way to get this information.
+Since I'm already querying WMI I decided to stick with that. However, there's no 'wrong' way to get this information.
 
 ### Step 4 - Loose ends
 
