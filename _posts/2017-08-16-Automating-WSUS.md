@@ -76,9 +76,8 @@ Next is to find out if all autostart Windows services are indeed started.
 
 It's important to know that PowerShell actually provides two ways to get information about Windows services.
 
-```Get-Service```
-
-```Get-WmiObject win32_service```
+* Get-Service
+* Get-WmiObject win32_service
 
 The difference __at least, that is how I see it__ is that ```Get-Service``` works best of you deal with one particulair service. ```Get-WmiObject``` on the other hand works well with multiple services and provides more detailed information.
 
@@ -257,9 +256,8 @@ $loc = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
 
 # Get global vars
 . $loc\_Globals.ps1
-```
+`
 
-```powershell
 Function Check-Server {
 
     [cmdletbinding()]
