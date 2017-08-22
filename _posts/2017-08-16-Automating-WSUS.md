@@ -132,7 +132,7 @@ Furthermore I make sure all these scripts are build the exact same way. This mak
 
 Let's take a look at the ```chk_WinServices.ps1``` script.
 
-The first part in the script is a line of code that actually finds out from where on my Windows box it's running. That location is stored in a variable called ```$loc```. 
+The first part in the script is a line of code that actually finds out from where on my Windows box it's running. That location is stored in a variable called ```$loc```
 
 ```powershell
 # Get script location
@@ -167,23 +167,23 @@ Foreach ( $Service in $tstWinService ) {
             Write-Log "$Msg"
         } # end if
 
-} # end foreach 
+} # end foreach
 ```
 
 Now, in this script you might notice a few variables. For instance: ```$collectSrv``` More on that later on!
 
-## Background
+## More Background
 
 First and foremost I want to be able to check multiple servers belonging to different application chains. For instance; A specific SQL application chain that contains:
 
 * SQL Servers
 * Application Servers
 
-Or our Office365 chain that contains a totally different set of servers. 
+Or our Office365 chain that contains a totally different set of servers.
 
-That means my script has to be dynamic. 
+That means my script has to be dynamic.
 
-#### Sigh. Well nobody said I have an easy job
+Sigh. Well nobody said I have an easy job
 
 ### Jason the 13th
 
@@ -191,7 +191,7 @@ An other key aspect of my scripting is that is must be easy to maintain. Or; eas
 
 _For the following examples I use a chain called Tosca._
 
-Creating a json file is easy. 
+Creating a json file is easy.
 
 ```json
 { 
@@ -208,7 +208,7 @@ Pretty straight forward.
 Remember I want my script to be as dynamic as possible. 
 
 To achieve this I create a __global.ps1_ file. I'm going to dotsource this file in all the other scripts I'm about to create.
-(more of that later on). Now, the __Globals_ file contains the following:
+(more of that later on). Now, the __Globals_ file contains the following.
 
 ```powershell
 $Date = (Get-Date -Format d).Replace("-","")
@@ -235,28 +235,23 @@ Function Write-Log {
 
 Lots of things are going on here! Most important is the json file.
 
-##### 1 - Import JSON file
+#### 1 - Import JSON file
 
 I have to import to contents of the json file in a variable called ```$arr```.
 
-```$arr = Get-Content "C:\Temp\Check\data.json" | Out-String | ConvertFrom-Json``` 
-
-##### 2 - A custom Write-Log function
+#### 2 - A custom Write-Log function
 
 I have added a ```Write-Log``` function to enable custom logging. 
 
 ### Ise Ise Baby
 
 Ok, my plan is beginning to unfold. It's time to write the final script.
-```Check-Server.ps1```
+Check-Server.ps1.
 
 ```powershell
-# Get script location
 $loc = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
 
-# Get global vars
-. $loc\_Globals.ps1
-`
+. $loc\_Globals.ps1`
 
 Function Check-Server {
 
@@ -302,14 +297,14 @@ $status_text = switch ($environment) {
             Write-Log "Checking Windows Services on: $collectSrv"
             Invoke-Expression C:\Temp\CheckPC2\chk-WinServices.ps1
             Write-Log ("#"*80)
-            Add-Content $logfile -value "[$Date1] Completed all WSUS checks for: $environment" 
+            Add-Content $logfile -value "[$Date1] Completed all WSUS checks for: $environment"
             #SendTo-eMail
         } # End tosca
     } # end switch
 } # end script
 ```
 
-So, what is going on here!? well, let me explain!
+So, what is going on hee!? well, let me explain!
 
 #### 1 - Location of script and dotsourcing the _globals.ps1
 
@@ -358,10 +353,9 @@ That will generate a nice logfile.
 
 Looking back on my original goals, I think I've done pretty well. The script(s) are dynamic, it's easy to add more servers/environments. However, they are somewhat complex. Dotsourcing a __Globals_ file may not be the most ideal way. Last, I'm not to happy with my _switch_ statement so I will definitely make some improvements.
 
-Good news is that I have saved myself lots of time. Next time I have to check the servers after WSUS updates, I will fire-up my scripts, sit back and relax. 
+Good news is that I have saved myself lots of time. Next time I have to check the servers after WSUS updates, I will fire-up my scripts, sit back and relax.
 
-
-#### Happy wife, Happy life! 
+Happy wife, Happy life!
 
 [Go back](https://mufana.github.io/blog)
 
