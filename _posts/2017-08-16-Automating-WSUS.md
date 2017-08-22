@@ -120,7 +120,7 @@ Since I'm already querying WMI I decided to stick with that. However, there's no
 
 Now that I know what I want to query (and most importantly) how. It's time to figure out the best way to do this automatically. 
 
-To accomplish this I'm going to place all my code in separate scripts. I named them all in a similar manner.
+To accomplish this I'm going to place all my code in separate scripts. I name them all in a similar manner.
 
 * chk_Firewall.ps1
 * chk_AppSerivces.ps1
@@ -138,14 +138,14 @@ The first part in the script is a line of code that actually finds out from wher
 $loc = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
 ```
 
-Next is to dotsource a ```_Globals.ps1``` file. Dotsourcing means that everything in the ```_Globals.ps1``` file is available in this scripts. Whether that be variables or functions.
+Next is to dotsource a ```_Globals.ps1``` file. Dotsourcing means that everything in the ```_Globals.ps1``` file is available in the script where you add a dotsourced script. Whether that be variables or functions.
 
 ```powershell
 # Get global vars
 . $loc\_Globals.ps1
 ```
 
-Finally something familiar! 
+Finally something familiar!
 
 ```powershell
 $tstWinService = (Get-WmiObject win32_service -ComputerName $collectSrv | where ({ $_.state -eq "stopped" -and $_.startmode -eq "auto"}))
