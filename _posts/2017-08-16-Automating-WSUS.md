@@ -246,7 +246,6 @@ I have added a ```Write-Log``` function to enable custom logging.
 ### Ise Ise Baby
 
 Ok, my plan is beginning to unfold. It's time to write the final script.
-Check-Server.ps1.
 
 ```powershell
 $loc = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
