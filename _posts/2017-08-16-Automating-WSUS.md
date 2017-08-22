@@ -145,13 +145,8 @@ Next is to dotsource a ```_Globals.ps1``` file. Dotsourcing means that everythin
 . $loc\_Globals.ps1
 ```
 
-Finally something familiar!
-
-```powershell
-$tstWinService = (Get-WmiObject win32_service -ComputerName $collectSrv | where ({ $_.state -eq "stopped" -and $_.startmode -eq "auto"}))
-````
-
 Last is to enumerate the contents of ```$tstWinService``` and write a message to a logfile.
+This can be done with a simple foreach constructor.
 
 ```powershell
 Foreach ( $Service in $tstWinService ) {
@@ -186,7 +181,7 @@ Sigh. Well nobody said I have an easy job
 
 ### Jason the 13th
 
-An other key aspect of my scripting is that is must be easy to maintain. Or; easy to add/remove application chains for someone with little or no knowledge of PowerShell. Therefore, I decided to setup a json data file that holds all relevant data. I.o. Servernames, application specific services, Domain names... and so on.
+Another key aspect is that the scripts must be easy to maintain. Or; easy to add/remove application chains for someone with little or no PowerShell knowledge. Therefore, I decided to setup a json data file that holds all relevant data. I.o. Servernames, application specific services, Domain names... and so on.
 
 _For the following examples I use a chain called Tosca._
 
