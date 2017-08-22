@@ -74,7 +74,7 @@ That returns a ```True``` of ```False```. Which is exactly what I'm after.
 
 Next is to find out if all autostart Windows services are indeed started. 
 
-It's important to know that PowerShell actually provides two ways to get information about Windows services. 
+It's important to know that PowerShell actually provides two ways to get information about Windows services.
 
 ```Get-Service```
 
@@ -82,7 +82,7 @@ It's important to know that PowerShell actually provides two ways to get informa
 
 The difference __at least, that is how I see it__ is that ```Get-Service``` works best of you deal with one particulair service. ```Get-WmiObject``` on the other hand works well with multiple services and provides more detailed information.
 
-I always tend to use ```Get-WmiObject```. 
+I always tend to use ```Get-WmiObject```.
 
 #### If you're new to PowerShell, play around with the ```Get-Service``` cmdlet. It's a great cmdlet to learn or enhance your scripting abilities.
 
@@ -104,13 +104,13 @@ For SQL (both the agent and instance) and the Windows Firewall, I use a very sim
 (Get-WmiObject win32_service -ComputerName mufana | where {$_.name -like "SQLAgent$*"})
 ```
 
-#### You do have to find out how your SQL agent / instance services are called. 
+#### You do have to find out how your SQL agent / instance services are called
 
 ### Step 3 - Da Da Di Dom Domain
 
-To be thorough I also want to know if a server still is a member of the correct domain. 
+To be thorough I also want to know if a server still is a member of the correct domain.
 
-As with ```Get-Service``` there are multiple ways to do this. 
+As with ```Get-Service``` there are multiple ways to do this.
 
 ```(Get-NetConnectionProfile).name```
 
@@ -249,7 +249,7 @@ I have added a ```Write-Log``` function to enable custom logging.
 ### Ise Ise Baby
 
 Ok, my plan is beginning to unfold. It's time to write the final script.
-```Check-Server.ps1```. 
+```Check-Server.ps1```.
 
 ```powershell
 # Get script location
@@ -257,20 +257,9 @@ $loc = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
 
 # Get global vars
 . $loc\_Globals.ps1
+```
 
-<#
-.Synopsis
-   Script to initiate WSUS checks for the PlanCare environment.
-.DESCRIPTION
-   This script cmdlet is used to initiate WSUS checks for the PlanCare environment.
-   Before using this script, check if the PSWUS module is installed on your system.
-.EXAMPLE
-   Check-Server -environment PC-rnd-test
-.EXAMPLE
-   Check-Server -environment PC-acc-test
-.EXAMPLE
-Check-Server -environment Tosca
-#>
+```powershell
 Function Check-Server {
 
     [cmdletbinding()]
@@ -319,7 +308,7 @@ $status_text = switch ($environment) {
             #SendTo-eMail
         } # End tosca
     } # end switch
-} # end script 
+} # end script
 ```
 
 So, what is going on here!? well, let me explain!
