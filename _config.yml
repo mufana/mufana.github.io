@@ -1,6 +1,6 @@
-name: The Dev Shed
+name: The Computer Hell
 permalink: /blog/:year/:month/:day/:title
 theme: jekyll-theme-slate
-title: Stories from the computer shed
-description: For your daily code needs
+title: The Computer Hell
+description: Tech stories from all corners of my work
 
