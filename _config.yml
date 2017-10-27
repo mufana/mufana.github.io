@@ -1,6 +1,6 @@
 name: The Dev Shed
 permalink: /blog/:year/:month/:day/:title
 theme: jekyll-theme-slate
-title: The Dev Corner
+title: Stories from the computer shed
 description: For your daily code needs
 
