@@ -39,7 +39,7 @@ First step is to check if a server is still online. We can find out with a simpl
 
 Good news is that we have a cmdlet for that. ```Test-NetConnection``` 
 
-![TestNet](https://codeinblue.files.wordpress.com/2017/08/ws1.png)
+![TestNet](https://codeinblue.files.wordpress.com/2017/10/ws4.png)
 
 Ok, well that seems to deliver! But can I ping multiple computers with: ```Test-NetConnection``` 
 
