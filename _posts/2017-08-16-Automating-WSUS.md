@@ -57,7 +57,7 @@ Get-Help Test-NetConnection
 
 It does however support input from the pipeline. So, If I have a list of computernames in a text file, I can pipe the contents of that text file to ```Test-NetConnection```. 
 
-![getcontent](https://codeinblue.files.wordpress.com/2017/08/ws4.png)
+![getcontent](https://codeinblue.files.wordpress.com/2017/10/ws4.png)
 
 Nice! that works! However I don't like the output. Lots of information I don't need. I just want to know the status of: ```PingSucceeded```. 
 
