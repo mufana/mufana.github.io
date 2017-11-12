@@ -1,3 +1,8 @@
+---title: 
+"PowerShell (Under The Wire)"
+date: 2017-11-12
+---
+
 # PowerShell (Under The Wire)
 
 Recently I stumbled upon a 'somewhat' hidden germ. The 'Under the Wire' wargames. 
