@@ -1,4 +1,4 @@
-# PowerShell Wargames
+# PowerShell (Under The Wire)
 
 Recently I stumbled upon a 'somewhat' hidden germ. The 'Under the Wire' wargames. 
 If you want to learn PowerShell or boost your PowerShell skills, definitely to <http://www.underthewire.tech/wargames.htm>.
