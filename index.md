@@ -1,4 +1,5 @@
-## Blogs about PowerShell and cool stuff I come across with.
+### Blogs about PowerShell and cool stuff I come across with.
 
-### My Blog
-<a href="mufana.github.io/blog">The Computer Hell</a> 
+
+### Go to the blogposts <a href="mufana.github.io/blog"></a>
+
