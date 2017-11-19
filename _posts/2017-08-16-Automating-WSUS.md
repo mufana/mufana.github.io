@@ -346,26 +346,10 @@ That will generate a nice logfile.
 
 Looking back on my original goals, I think I've done pretty well. The script(s) are dynamic, it's easy to add more servers/environments. However, they are somewhat complex. Dotsourcing a __Globals_ file may not be the most ideal way. Last, I'm not to happy with my _switch_ statement so I will definitely make some improvements.
 
+Since I'm still working on perfecting the module, it's not available for download yet. 
+
 Good news is that I have saved myself lots of time. Next time I have to check the servers after WSUS updates, I will fire-up my scripts, sit back and relax.
 
 Happy wife, Happy life!
 
 [Go back](https://mufana.github.io/blog)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
