@@ -16,7 +16,13 @@ I've been using Slack for quite some time now. Mostly during Windows Server Upda
 * Firewall up & running.
 * Eventlogs for specific events.
 
-If each of these checks pass with an [OK], a notification is send to Slack.
+If each of these checks pass with an [OK], a notification is send to Slack. 
+
+### Why Slack
+
+* First it makes my life a little easier. A simple message in Slack is far better then me having to read a dozen logfiles or eMails.
+* It keeps things transparent. Anyone who's a member of the Slack Channel can read the messages. 
+* It's great for keeping track of the 'history'. Searching Slack is way better then searching logfiles or eMails.
 
 ### Another use case
 
@@ -227,6 +233,6 @@ That's pretty much there is to it when it comes to the instruction to setup Jenk
 
 ## Wrapping up
 
-There are many use cases where Slack might come in handy. For instance; Pester testing. Jenkins is a true automation server / CI/CD tool. When all your colleagues use Slack for day2day communication, the outcome of Jenkins tasks in that Slack might prove to be a worthy asset.
+There are many use cases where Slack might come in handy. For instance; Pester testing. Jenkins is a Continuous Integration / Testing and Deployment platform. When all your colleagues use Slack for day2day communication, the outcome of Jenkins tasks in that Slack might prove to be a worthy asset.
 
 [Go back](https://mufana.github.io/blog)
