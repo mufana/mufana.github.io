@@ -20,9 +20,9 @@ Pester is a completely different way to creating scripts. With Pester you first:
 
 Now, I'm in the midst of learning Pester. So I'm not going in depth as there's still much to learn. Instead, I wil focus on Jenkins. 
 
-### Jenkins
+### Jenkinks
 
-Jenkins is a true automation platform. Following the concepts of Continuous Integration / Testing and Deployment. As such, it is __*the*__ place to store and execute Pester tests. 
+Jenkins is a true Continuous Integration / Testing and Deployment platform. As such, it is __*the*__ place to store and execute Pester tests. 
 
 ### Write the code
 
@@ -86,7 +86,7 @@ And my function works from the PowerShell Console.
 
 ### Jenkins time
 
-This is where things are getting serious. Jenkins is a true automation platform and embraces the concepts of Continuous Testing/Integration and Deploying. So it makes sense storing and running Pester tests from the Jenkins platform. You can execute them from a single place and see the results on the Jenkins server webpage. And; because I recently added the Jenkins-Slack integration, I will receive all the information on my phone. 
+This is where things are getting serious. Remember what I said about Jenkins? _"Continuous Integration / Testing and Deployment platform"_.  It makes sense storing and running Pester tests from Jenkins. You can execute them from a single place and see the results on the Jenkins server webpage. And; because I recently added the Jenkins-Slack integration, I will receive all the information in my Slack client as well. Which keeps things transparent.
 
 #### But how to achieve this:
 
