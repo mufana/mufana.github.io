@@ -309,7 +309,7 @@ So, that works. But of course there's a little more to it then this.
 First I have to import the CSV file I created with my _Get-NewADUsers.ps1_ script.
 ```$CollUsers = Import-Csv $CSVpath\$CSVFile```
 
-The next step if to create a foreach statement.
+The next step if to create a foreach constructor.
 ```Foreach ($User in $CollUser)```
 
 Now, the foldername of the HomeFolder I want to create is the samAccountName of the user.
@@ -317,7 +317,7 @@ Now, the foldername of the HomeFolder I want to create is the samAccountName of 
 
 I also want to make sure that I only create folders that don't exist. To do that I create a simple test. ```$Test = (test-path -path $Location\$FolderName)```.
 
-Last I validate the test within an 'if/else' statement. 
+Last I validate the test within an 'if/else' constructor. 
 
 The script:
 
