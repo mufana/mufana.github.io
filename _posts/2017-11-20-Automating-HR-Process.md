@@ -189,19 +189,46 @@ Each script has it's own scope. Known as the "Script Scope" All variables and fu
 
 Let's pretend we have a script called: _'Script (A).ps1'_ which contains a function called: ```Start-NewFunction```.
 
-And let's pretend I have another script _'Script (B).ps1'_ with the function: ```Stop-NewFunction``` that I want to use in: _Script (A).ps1'_
+```powershell
+Function StartNew-Function {
+    Write-Host "Starts a New-Function"
+}
+```
+
+And let's pretend I have another script _'Script (B).ps1'_ with the function: ```Stop-NewFunction```.
+
+```powershell
+Function Stop-NewFunction {
+    Write-Host "Stop the New-Function"
+}
+```
+
+Now I've executed script (A).ps1 and I'm able to use the ```Start-NewFunction```. But I also want to use ```Stop-NewFunction``` without actually running 'Script (B).ps1'
+
+![nope](https://codeinblue.files.wordpress.com/2017/11/b.png)
+
+Ok, cleary that doesn't work. 
 
 The easy way is to DotSource _'Script (B).ps1'_ in _'Script (A).ps1'_.
 
-DotSourcing enables the use of variables and functions in other scripts.
-
 ```powershell
 content of script (A.ps1)
-.\ScriptB.ps1
-function Start-NewFunction {
-    Write-Host "Start-NewFunction"
+Function Start-NewFunction {
+# DotSource Script(B).ps1 
+. "C:\temp\Script(B).ps1"
+
+    Write-Host "Starts a New-Function"
+    Stop-NewFunction
 }
 ```
+
+When I execute 'Script (A).ps1' again...
+
+![worksperfect](https://codeinblue.files.wordpress.com/2017/11/2017-11-20-16_31_04-powershell-integrated-scripting-environment-5-1-16299-19-__-in-code-we-trust-__.png)
+
+DotSourcing enables the use of variables and functions in other scripts.
+
+#### Back to Globals.ps1
 
 My _Globals.ps1_ currently looks like this:
 
