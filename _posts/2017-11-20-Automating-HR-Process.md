@@ -203,13 +203,15 @@ Function Stop-NewFunction {
 }
 ```
 
-Now I've executed script (A).ps1 and I'm able to use the ```Start-NewFunction```. But I also want to use ```Stop-NewFunction``` without actually running 'Script (B).ps1'
+When I execute 'script (A).ps1' I'm able to use the ```Start-NewFunction```. But I also want to use ```Stop-NewFunction``` without actually running 'Script (B).ps1'
+
+Lets try!
 
 ![nope](https://codeinblue.files.wordpress.com/2017/11/b.png)
 
-Ok, cleary that doesn't work. 
+Ok, cleary that doesn't work. The ```Stop-NewFunction``` is not recognized as the name of cmdlet.
 
-The easy way is to DotSource _'Script (B).ps1'_ in _'Script (A).ps1'_.
+The way to solve this is to DotSource _'Script (B).ps1'_ in _'Script (A).ps1'_.
 
 ```powershell
 content of script (A.ps1)
