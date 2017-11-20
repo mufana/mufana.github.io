@@ -189,7 +189,7 @@ Each script has it's own scope. Known as the "Script Scope" All variables and fu
 
 Let's pretend we have a script called: _'Script (A).ps1'_ which contains a function called: ```Start-NewFunction```.
 
-I have another script _'Script (B).ps1'_ with the function: ```Stop-NewFunction``` that I want to use in: _Script (A).ps1'_
+And let's pretend I have another script _'Script (B).ps1'_ with the function: ```Stop-NewFunction``` that I want to use in: _Script (A).ps1'_
 
 The easy way is to DotSource _'Script (B).ps1'_ in _'Script (A).ps1'_.
 
@@ -228,11 +228,19 @@ My ```$CSVFile``` variable holds the filename for the CSV file I want to export.
 
 ![short](https://codeinblue.files.wordpress.com/2017/11/2017-11-20-12_21_10-vidum_ad-fresh-install-running-oracle-vm-virtualbox.png)
 
-As you can see the format is: _mm/dd/yyyy_. The '/' charachter is a little anoying because it's interpreted as a part of the file location. _'C:\11\20\2017\'_. So I have to make a minor tweak.
+As you can see the format is: _mm/dd/yyyy_. The '/' charachter is a little anoying because it's interpreted as a part of the file location. _'C:\Foldername\11\20\2017-'_. 
 
-And that's where ```.Replace()``` comes to the rescue. By using this method I can replace the '/' for a '-'.
+![Wrong](https://codeinblue.files.wordpress.com/2017/11/2017-11-20-14_54_57-vidum_ad-fresh-install-running-oracle-vm-virtualbox.png)
+
+Ah! Damn you PowerShell!
+
+But, this is where ```.Replace()``` comes to the rescue. By using this method I can replace the '/' for a '-'.
 
 ![replace](https://codeinblue.files.wordpress.com/2017/11/2017-11-20-12_21_40-vidum_ad-fresh-install-running-oracle-vm-virtualbox.png)
+
+And that works perfect.
+
+![works](https://codeinblue.files.wordpress.com/2017/11/2017-11-20-14_59_11-vidum_ad-fresh-install-running-oracle-vm-virtualbox.png)
 
 All there's left is to DotSource this file within the: ```Get-NewADUsers.ps1``` script.
 
