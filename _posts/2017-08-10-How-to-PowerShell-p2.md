@@ -1,5 +1,5 @@
 ---
-title: "How to PowerShell (Part2)"
+title: "How to PowerShell (Part 2)"
 date: 2017-08-10
 excerpt: Learn PowerShell PowerShell
 tags:
