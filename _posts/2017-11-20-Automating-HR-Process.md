@@ -286,7 +286,7 @@ Get-ADUser -Filter {whenCreated -ge $SearchDate} ` #Backtick here
 | Select $props | export-csv -Path $CSVpath\$CSVfile -NoTypeInformation
 ```
 
-__The variable ```$PSScriptRoot``` is a system variable. This is the current location from where the script is executed. This variable is set when the script is executed. if the script is finished, the variable will be empty.__
+__The variable ```$PSScriptRoot``` is a system variable. This is the current location from where the script is executed. This variable is only set during execution of the script. As soon as the script is finished, the variable will be empty.__
 
 To export all the data to a CSV file I've added the ```Export-CSV``` cmdlet.
 
