@@ -142,11 +142,7 @@ Lets say the current date is: _Friday November 17_.
 
 ![get-datestandard](https://codeinblue.files.wordpress.com/2017/11/2.png)
 
-```.AddDays``` is a method.
-
-PowerShell generates objects. 
-
-Let's say a motorcycle object. Objects have properties. A motorcycle typically comes with a odometer. The figure below shows a 'motorcycle' object which has a property 'odometer' and two methods. (Start and Stop).
+Now PowerShell generates objects. Let's say a motorcycle object. Objects have properties. A motorcycle typically comes with a odometer. The figure below shows a 'motorcycle' object which has a property 'odometer' and two methods. (Start and Stop).
 
 ![object](https://codeinblue.files.wordpress.com/2017/11/2017-11-20-00_56_03-document1-recovered-word.png)
 
