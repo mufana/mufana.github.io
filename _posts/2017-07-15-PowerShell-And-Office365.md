@@ -7,9 +7,7 @@ date: 2017-08-03
 
 ## Background
 
-A few days ago I was aksed to get a list of mailboxstatistics from a few or our users. Or to be more precise; a list of users with their LogonName,firstName,lastName,department,Title and the size of the mailbox. 
-
-Now, I don't have lots of Office365 knowledge. However I'm equipped with the magic of PowerShell. So this had to be an easy task. And if not; there's always 'Get-Help'.
+A few days ago I was aksed to get a list of mailboxstatistics from a few or our users. Or to be more precise; a list of users with their LogonName,firstName,lastName,department,Title and the size of the mailbox.
 
 ## What to script
 
@@ -29,7 +27,7 @@ $Session = New-PSSession `
 Import-PSSession $Session
 ```
 
-This script connects to the Office365 environment and will import all necessary cmdlets for you in a #tmp container.
+This script connects to the Office365 environment and will import all necessary cmdlets for you in a tempory module.
 
 ![image of temp](https://i0.wp.com/codeinblue.files.wordpress.com/2017/08/2.png)
 
@@ -43,7 +41,7 @@ Get-Command -Module tmp*
 
 ## Time to play
 
-I noticed a cmdlet called 'Get-Mailbox'. That could be the one i'd need. 
+I noticed a cmdlet called 'Get-Mailbox'. That could be the one i'd need.
 
 ```powershell
 Get-Mailbox 'Mufana' | Select *
@@ -51,7 +49,7 @@ Get-Mailbox 'Mufana' | Select *
 
 ![Image of GetMailbox](https://i0.wp.com/codeinblue.files.wordpress.com/2017/08/4.png)
 
-That gives me lots of information. But not quite what I'm looking for. 
+That gives me lots of information. But not quite what I'm looking for.
 
 Lets search for all cmdlets that start with the verb 'get' and have a noun with word 'mailbox' in it.
 
@@ -66,7 +64,7 @@ Nice! A potenial one. 'Get-MailboxStatistics'.
 Lets give that puppy a try!
 
 ```powershell
-Get-MailboxStatistics Mufana | select *
+Get-MailboxStatistics "Jeroen" | select *
 ```
 
 And yes! there it was! 'TotalItemSize'. Exactly what I'm after!
@@ -77,11 +75,14 @@ And yes! there it was! 'TotalItemSize'. Exactly what I'm after!
 
 ### Step 1
 
-Create a list of all users I need to query. Since we're using Office365, I decided to get the userlist also from Office365 instead of our local Active Directory. Therefore I didn't had to query a user who existed in our local Active Directory but not in Office365. Yes, it happens. Hate it.
+Create a list of all users I need to query. Since we're using Office365, I decided to get the userlist also from Office365 instead of our local Active Directory. Therefore I didn't had to query a user who existed in our local Active Directory but not in Office365.
 
 ```powershell
 (get-user -ResultSize $Resultsize |? {$_.recipienttype -eq "userMailBox"}).displayname | out-file C:\Temp\Userlist.txt"
 ```
+
+The above cmdlet exports the users displaynames to a txt file.
+
 
 ### Step 2 - Importing the userlist to use in the script
 
@@ -99,20 +100,27 @@ Now, I have to query two different objects within Office365.
 
 * The User object. (I need the: firstName, lastName, title, Department and eMail address).
 
-* The MailboxStatistics for the totalitemSize.
+* The MailboxStatistics. (TotalItemSize)
 
 ### Step 4 - Query time
 
 #### First query
 
+For all the users in the userlist.txt, I create a new variable '$MailboxUsers' and I use that to store the output of the 'get-user' query.
+
+```Foreach ($usr in $Users) {$MailboxUsers = Get-User $usr```
+
+Since Office365 also has ShardMailBoxes etc... I want to make sure to only export the UserMailBoxes. ```| Where-Object {$_.recipienttype -eq "UserMailbox"}```
+
+And, I only want users with a UserMailbox. We do have users with no mailbox or shared mailboxes. And, 'Get-User' has all the data (department, title etc...) that I need.
+
 ```powershell
 Foreach ($usr in $Users) {$MailboxUsers = Get-User $usr | Where-Object {$_.recipienttype -eq "UserMailbox"}
 ```
 
-What?
-Well, for all the users in the userlist.txt, I create a new variable '$MailboxUsers' and I use that to store the output of the 'get-user' query. And, I only want users with a UserMailbox. We do have users with no mailbox or shared mailboxes. And, 'Get-User' has all the data (department, title etc...) that I need.
-
 #### Second query
+
+For all the users with a mailbox, I set the variable $UserPrin to the userPrincipalName. Next I create a new variable called 'Stats' and use that to hold the data from the 'Get-MailboxStatistics' cmdlet.
 
 ```powershell
 Foreach ($user in $mailboxUsers) {
@@ -120,8 +128,6 @@ Foreach ($user in $mailboxUsers) {
     $Stats = Get-MailboxStatistics $UserPrin
 }
 ```
-
-For all the users with a mailbox, I set the variable $UserPrin to the userPrincipalName and, I create a new variable called 'Stats' and use that to hold the data from the 'Get-MailboxStatistics' cmdlet.
 
 ### Step 3 - Create a property table.
 
@@ -138,7 +144,8 @@ $Properties = @{
 } # End Property Block
 ```
 
-Next we create a new psobject with the property block and add every object to the array. One object for each user. (I can finally get to use that empty array!)
+Now that I have all my properties sorted out, I have to create a new PSObject for each user in the userlist.
+(I can finally get to use that empty array!)
 
 ```powershell
 $Results += New-Object psobject -Property $properties
@@ -154,7 +161,7 @@ $Results | Select-Object Logon,Name,Department,eMail,LoggedIn,@{name=”MailBoxS
 
 ## Wrapping things up
 
-Export these results to a csv/excel document and we're good!
+Export these results to a csv/excel document, send it to my manager and I'm good!
 
 ![Image of result](https://i2.wp.com/codeinblue.files.wordpress.com/2017/08/7.png)
 
