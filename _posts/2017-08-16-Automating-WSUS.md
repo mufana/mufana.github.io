@@ -12,24 +12,27 @@ author_profile: true
 
 ## Background
 
-Anyone responsible for a Windows Server environment knows it is vital to keep the servers up to date. For a large part, that means; updating the servers on a regular basis. And it goes without saying that this could be done with PowerShell. But, where updating a server is one part of the job. Checking if everything still runs accordingly is another. 
+Anyone responsible for a Windows Server environment knows it is vital to keep the servers up to date. For a large part, that means; updating the servers on a regular basis. And it goes without saying that this could be done with PowerShell. But, where updating a server is one part of the job. Checking if everything still runs accordingly is another. Sometimes a bit underestimated.
 
-### Check Norris
+### But what to check
 
-So, what do we check after a server has been updated. Well! in my case I check the following:
+Well that depends on the server, it's tasks and specific services or applications it runs. In my case I came up with the following:
 
-* Server still online
+* Server online
 * All important Windows Services (Auto start) running
 * Specific application Windows Services running
 * Server still a member of the correct domain
 * Windows Firewall running
 * Specific application ports open
+* No pending WSUS updates
 
-Imagine having to check all that manually on twenty or more servers? On that special evening you and your girl planned months in advance! 
+But as I said, there are no guideline. It all depends on the type of server. And of course, checking the 'techical side' is one thing. We must not forget to check the application the server is used for.
 
-### Happy wife - Happy life
+### How I do it
 
-In order to keep the wife (and life) happy and save some time, we have to do a little PowerShelling.
+In my company, Windows Server updates are installed every 3 months. And of course, always in the evening. After installation and a few reboots, I login to the server and check the list mentioned above. Now, that's OK if you updated one server. It becomes a little frustrating when you've updates 5+ servers.
+
+### Automate it
 
 I always start coding in the PowerShell console. That allows me to play around a bit to see what works best.
 
@@ -37,13 +40,13 @@ I always start coding in the PowerShell console. That allows me to play around a
 
 First step is to check if a server is still online. We can find out with a simple ping. But, we're not going to do that. To easy. Where is the fun in that? I need a 'ping' script. And preferably one that I can use to ping multiple servers at the same time.
 
-Good news is that we have a cmdlet for that. ```Test-NetConnection``` 
+Good news is that we have a cmdlet for that. ```Test-NetConnection```
 
-![TestNet](https://codeinblue.files.wordpress.com/2017/10/ws4.png)
+![TestNet](https://codeinblue.files.wordpress.com/2017/11/11.png)
 
-Ok, well that seems to deliver! But can I ping multiple computers with: ```Test-NetConnection``` 
+Ok, well that seems to deliver! But can I ping multiple computers with: ```Test-NetConnection```
 
-![PingMore](https://codeinblue.files.wordpress.com/2017/08/ws3.png)
+![PingMore](https://codeinblue.files.wordpress.com/2017/11/21.png)
 
 Apparently not. Let's check what the help file has to say about that.
 
@@ -55,22 +58,22 @@ Get-Help Test-NetConnection
 
  The ```ComputerName``` switch is a string and does not support the input of multiple ComputerNames. Otherwise it would look like this: ```<string[]>``` The square brackets indicate that the string supports multiple values.
 
-It does however support input from the pipeline. So, If I have a list of computernames in a text file, I can pipe the contents of that text file to ```Test-NetConnection```. 
+It does however support input from the pipeline. So, If I have a list of computernames in a text file, I can pipe the contents of that text file to ```Test-NetConnection```.
 
-![getcontent](https://codeinblue.files.wordpress.com/2017/10/ws4.png)
+![getcontent](https://codeinblue.files.wordpress.com/2017/11/31.png)
 
-Nice! that works! However I don't like the output. Lots of information I don't need. I just want to know the status of: ```PingSucceeded```. 
+Nice! that works! However I don't like the output. Lots of information I don't need. I just want to know the status of: ```PingSucceeded```.
 
 
 ```powershell
 (Get-Content C:\temp\Servers.txt | Test-NetConnection).pingsucceeded
 ```
 
-![Suc6](https://codeinblue.files.wordpress.com/2017/08/ws5.png)
+![Suc6](https://codeinblue.files.wordpress.com/2017/11/41.png)
 
 That returns a ```True``` of ```False```. Which is exactly what I'm after.
 
-#### Step 2 - Should I start or should I go
+#### Step 2 - Windows Services
 
 Next is to find out if all autostart Windows services are indeed running.
 
@@ -88,39 +91,51 @@ _If you're new to PowerShell, play around with the ```Get-Service``` cmdlet. It'
 To find out if all services that autostart are indeed running I use to following line of code.
 
 ```powershell
-(Get-WmiObject win32_serivce -ComputerName mufana | where ({ $_.state -eq "stopped" -and $_.startmode -eq "auto"}))
+(Get-WmiObject win32_service -ComputerName localhost | where ({ $_.state -eq "stopped" -and $_.startmode -eq "auto"}))
 ```
 
 This will give me the following output:
 
-![Output](https://codeinblue.files.wordpress.com/2017/08/ws6.png)
+![Output](https://codeinblue.files.wordpress.com/2017/11/51.png)
 
 ### What about SQL or other specific services
 
-For SQL (both the agent and instance) and the Windows Firewall, I use a very similar line of code.
+Since my company's core application runs on a SQL server, I also want to make sure both the SQL agent and instance are running.
 
 ```powershell
-(Get-WmiObject win32_service -ComputerName mufana | where {$_.name -like "SQLAgent$*"})
+(Get-WmiObject win32_service -ComputerName localhost | where {$_.name -like "SQLAgent$*"})
 ```
+
+You can use a similair approach when it comes to other applicaion specific services. You do have to find out the exact name of the service. Sometimes the 'servicename' is different then the 'displayname'.
+
+![name](https://codeinblue.files.wordpress.com/2017/11/7.png)
 
 _You do have to find out how your SQL agent / instance services are called._
 
-### Step 3 - Da Da Di Dom Domain
+_When using SQL express, there's no agent installed!_
+
+Another thing to consider that this doesn't work with the Windows Firewall. The Windows Service may be started, but that doesn't mean the firewall is running.
+
+![FW](https://codeinblue.files.wordpress.com/2017/11/8.png)
+
+
+### Step 3 - Is the server still member of you domain
 
 To be thorough I also want to know if a server still is a member of the correct domain.
 
-As with ```Get-Service``` there are multiple ways to do this.
+_My test server is a standalone server!_
 
-* (Get-NetConnectionProfile).name
-* (Get-WmiObject -class win32_computersystem -ComputerName localhost).domain
+```powershell
+(Get-WmiObject -class win32_computersystem -ComputerName localhost).domain
+```
 
-Since I'm already querying WMI I decided to stick with that. However, there's no 'wrong' way to get this information.
+![domain](https://codeinblue.files.wordpress.com/2017/11/61.png)
 
 ### Step 4 - Loose ends
 
-Now that I know what I want to query (and most importantly) how. It's time to figure out the best way to do this automatically. 
+Now that I know what I want to query (and most importantly) how. It's time to figure out the best way to do this automatically.
 
-To accomplish this I'm going to place all my code in separate scripts. I name them all in a similar manner.
+First step is to create a new script for every single check and name them all in a similair maner.
 
 * chk_Firewall.ps1
 * chk_AppSerivces.ps1
@@ -135,8 +150,10 @@ The first part in the script is a line of code that actually finds out from wher
 
 ```powershell
 # Get script location
-$loc = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
+$loc = $PSScriptRoot
 ```
+
+__The variable ```$PSScriptRoot``` is a system variable. This is the current location from where the script is executed. This variable is only set during execution of the script. As soon as the script is finished, the variable will be empty.__
 
 Next is to dotsource a ```_Globals.ps1``` file. Dotsourcing means that everything in the ```_Globals.ps1``` file is available in the script where you add a dotsourced script. Whether that be variables or functions.
 
@@ -176,8 +193,6 @@ First and foremost I want to be able to check multiple servers belonging to diff
 Or our Office365 chain that contains a totally different set of servers.
 
 That means my script has to be dynamic.
-
-Sigh. Well nobody said I have an easy job
 
 ### Jason the 13th
 
