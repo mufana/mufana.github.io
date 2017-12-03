@@ -1,5 +1,5 @@
 ---
-title: "Automation an HR process (Part 2)"
+title: "Automating an HR process (Part 2)"
 date: 2017-12-03
 ---
 
