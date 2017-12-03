@@ -5,7 +5,7 @@ date: 2017-12-03
 
 # Automating an HR process (Part 2)
 
-[Remember my previous post!](https://mufana.github.io/blog/2017/11/20/Automating-HR-Process)
+Remember my previous post!
 
 This was supposed to be part 2 of this blog series. But instead it turned out to be...
 
