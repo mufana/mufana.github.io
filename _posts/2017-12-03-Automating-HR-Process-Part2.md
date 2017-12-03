@@ -214,16 +214,16 @@ My code runs on a management server. Which means. The fileserver is a seperate s
 Function New-Home {
 
     # Use the Jenkins global password: SAVIDUM.
-    $Pass = $env:SAVIDUM | ConvertTo-SecureString -AsPlainText -Force
     $User = "sa-vidum"
-    $cred = New-Object System.Management.Automation.PSCredential -ArgumentList $User, $pass
+    $Pass = $env:SAVIDUM | ConvertTo-SecureString -AsPlainText -Force
+    $Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $User, $Pass
     
     $Data = "C:\Scripts\PowerShell\VIDUM\Data"
     $Day = (Get-Date).ToString("dd-MM-yy")
     $Collusers = (Import-csv -Path "$data\$Day-Users.csv")
 
     # Create the remote session to the fileserver.
-    Invoke-Command -ComputerName localhost -Credential $cred -ScriptBlock {
+    Invoke-Command -ComputerName localhost -Credential $Cred -ScriptBlock {
         $CRHomedirs = $Using:CollUsers
         Write-Output "$($CRHomedirs.Count) homedirs to create!"
         
@@ -320,16 +320,16 @@ I wrapped a function around it to meet my needs.
 Function Set-AccessRights {
 
     # Use the Jenkins global password: SAVIDUM.
-    $Pass = $env:SAVIDUM | ConvertTo-SecureString -AsPlainText -Force
     $User = "sa-vidum"
-    $cred = New-Object System.Management.Automation.PSCredential -ArgumentList $User, $pass
+    $Pass = $env:SAVIDUM | ConvertTo-SecureString -AsPlainText -Force
+    $Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $User, $Pass
     
     $Data = "C:\Scripts\PowerShell\VIDUM\Data"
     $Day = (Get-Date).ToString("dd-MM-yy")
     $Collusers = (Import-csv -Path "$data\$Day-Users.csv")
 
     # Create remote session to the fileserver
-    Invoke-Command -ComputerName localhost -Credential $cred -ScriptBlock {
+    Invoke-Command -ComputerName localhost -Credential $Cred -ScriptBlock {
         $CRHomedirs = $Using:CollUsers
         Write-Output "$($CRHomedirs.Count) homedirs to create!"
         
