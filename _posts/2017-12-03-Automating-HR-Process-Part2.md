@@ -142,7 +142,7 @@ Setting up the Slack notifications is easy. [I've written a separate blogpost fo
 
 We all know those lazy admins who 'instead of using service accounts' are abusing their own credentials to do stuff or execute scripts on servers. And worse, store passwords plain text in scripts. Obviously we're not going to do that.
 
-For this example I've created a Service Account in the Active Directory. ```SA-Jenkins```. This account has the right to:
+For this example I've created a Service Account in the Active Directory. ```SA-VIDUM```. This account has the right to:
 
 * Create a folder in: ```\\contoso\Home```
 
