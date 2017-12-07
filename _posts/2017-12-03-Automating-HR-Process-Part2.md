@@ -249,11 +249,51 @@ Function New-Home {
 New-Home
 ```
 
-Not the most complicated script. But there is however a catch! ```$CRHomedirs = $Using:CollUsers``` What's with the __$Using:CollUsers__ variable?
+The first part is to define a few vars and the jenkins global var: ```sa-vidum```. The ```$Collusers``` var, imports the newly created users from a csv file created earlier on.
+
+```powershell
+    $User = "sa-vidum"
+    $Pass = $env:SAVIDUM | ConvertTo-SecureString -AsPlainText -Force
+    $Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $User, $Pass
+    
+    $Data = "C:\Scripts\PowerShell\VIDUM\Data"
+    $Day = (Get-Date).ToString("dd-MM-yy")
+    $Collusers = (Import-csv -Path "$data\$Day-Users.csv")
+```
+
+Next, we have to create a remote session to the fileserver.
+
+```powershell
+    Invoke-Command -ComputerName localhost -Credential $Cred -ScriptBlock {
+        $CRHomedirs = $Using:CollUsers
+        Write-Output "$($CRHomedirs.Count) homedirs to create!"
+```
+
+But what's with the: ```$CRHomedirs = $Using:CollUsers``` and __$Using:CollUsers__ variables?
 
 Well, I'm executing this script in a remote session. The __$CollUsers__ variable is a only available locally. So we have to pass it to the remote session. The way to do is is by: ```$Using:```.
 
 __$Using is only available in PowerShell V3 and higher!__
+
+Last is to loop through to users defined in the csv file, and create a new homedir based on the: ```samAccountName```.
+
+```powershell
+        Foreach ($User in $CRHomedirs) {
+            
+            # The location where the homefolder is created
+            $locDFS = "\\contoso.com\home"
+
+            # Set the homefoldername to the samAccountName
+            $HomeDir = $User.samAccountName
+
+            # Check if homedir exist, if not, create.
+            $Check = Test-Path -path $locDFS\$HomeDir
+                    If ($Check -eq $True) { 
+                        Write-Output "$Homedir already exist on: $locDFS"  
+                    } Else {
+                        New-Item -ItemType Directory -path "$locDFS\$Homedir"
+                        Write-Output "$Homedir created on: $locDFS"
+```
 
 #### The Jenkins build task
 
