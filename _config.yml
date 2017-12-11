@@ -1,6 +1,6 @@
 name: The Computer Hell
 permalink: /blog/:year/:month/:day/:title
-theme: jekyll-theme-minimal
+theme: jekyll-theme-slate
 title: The Computer Hell
 description: Tech stories from all corners of my work
 
