@@ -3,7 +3,7 @@ title: "Automating an HR process (Part 2)"
 date: 2017-12-03
 ---
 
-# Automating an HR process (Part 2)
+# Automating an HR process (Part 2 or...)
 
 Remember my previous post!
 
@@ -88,9 +88,9 @@ Next we'll need to install a few plugins.
 
 ![available](https://codeinblue.files.wordpress.com/2017/12/2-select-plugins.png)
 
-3; In the: ```Filter box``` type: ```PowerShell``` and click the checkbox next to the PowerShell plugin.
+3; In the: ```Filter box``` enter: ```PowerShell``` and click the checkbox next to the PowerShell plugin.
 
-4; In the: ```Filter box``` type: ```Environment Injector Plugin``` and click the checkbox.
+4; In the: ```Filter box``` enter: ```Environment Injector Plugin``` and click the checkbox.
 
 5; When the plugins are installed, click the: ```Restart Jenkins when...``` checkbox to restart Jenkins.
 
@@ -98,7 +98,7 @@ Next we'll need to install a few plugins.
 
 ## A 64bit PowerShell instance
 
-Default, the Jenkins server runs in 32bit mode. That also means that PowerShell scripts are executed from the 32bit PowerShell instance. Most PowerShell modules (including the Azure and MSonline modules are 64bit only), so they won't work with the 32bit instance. The solution is to run Jenkins in 64bit mode. __The 32bit Azure modules are deprecated__.
+Default, the Jenkins server runs in 32bit mode. That also means that PowerShell scripts are executed from the 32bit PowerShell instance. Most PowerShell modules (including the Azure and MSonline modules are 64bit only), so they won't work with the 32bit instance. The solution is to run Jenkins in 64bit mode.
 
 To change Jenkins from 32bit to 64bit:
 
