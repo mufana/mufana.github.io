@@ -1,8 +1,8 @@
-name: AAS
+name: BAAS
 permalink: /blog/:year/:month/:day/:title
 theme: jekyll-theme-minimal
 avatar: https://static.pexels.com/photos/546819/pexels-photo-546819.jpeg
-title: Awesome Automation Stories
+title: "Blaauw's Awesome Automation Stories"
 description: Joe Blaauw, System Engineer, PowerShell lover, blogging about cool stuff I come accros with.
 footer-links:
   linkedin: jeroen-blaauw-9b0b522
