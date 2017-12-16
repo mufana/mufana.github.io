@@ -3,6 +3,8 @@ title: "Automating an HR process (Part 2)"
 date: 2017-12-03
 ---
 
+![code](https://static.pexels.com/photos/546819/pexels-photo-546819.jpeg)
+
 # Automating an HR process (Part 2 or...)
 
 Remember my previous post!
