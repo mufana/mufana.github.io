@@ -1,5 +1,8 @@
 name: AAS
 permalink: /blog/:year/:month/:day/:title
 theme: jekyll-theme-minimal
+avatar: "https://static.pexels.com/photos/546819/pexels-photo-546819.jpeg"
 title: Awesome Automation Stories
 description: Joe Blaauw, System Engineer, PowerShell lover, blogging about cool stuff I come accros with.
+navbar-links:
+  LinkedIN: "https://www.linkedin.com/in/jeroen-blaauw-9b0b522/"
