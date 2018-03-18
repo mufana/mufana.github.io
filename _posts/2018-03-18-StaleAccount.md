@@ -321,12 +321,12 @@ However I've added a few extra lines.
 
 To remove homedirectories I first have to make sure there is one. So, that's the first line of code. ```If ($CheckHomeDir.Exists -eq $True)``` Do something.
 
-And then, you'll see something weird. __Robocopy__ _"I thought you wanted to delete folders?"_ And I do. But, the problem here is the 256 characterlimit of Windows. And that's something even PowerShell can't work around. 
+And then, you'll see something weird. __Robocopy__ _"I thought you wanted to delete folders?"_ And I do. But, the problem here is the 256 characterlimit of Windows. And that's something even PowerShell can't work with. 
 
 The trick is to use Robocopy. 
 
 1. Create an empty directory. In this example I've used: ```C:\Temp\Empty```
-2. Exectute: ```robocopy C:\temp\Empty PathToTargetDir /MIR```
+2. Execute: ```robocopy C:\temp\Empty PathToTargetDir /MIR```
 
 This mirors the empty directory with the targetdirectory. And it will automatically purge all files without any problems. Even the files that exceed 256 characters. 
 
@@ -357,7 +357,7 @@ Move-ADObject -Identity "CN=$UserID,ou=Users,ou=corp,dc=contoso,dc=com" -TargetP
 
 ### Switch it
 
-Last, I created another parameter called: __CleanUp__ and I've added another custom array to get a report. 
+Last, I created another switch parameter called: __CleanUp__ and I've added another custom array to create a report. 
 
 ```powershell
 # CleanUp the home/profile directories and disable expired accounts
