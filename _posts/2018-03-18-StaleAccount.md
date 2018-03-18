@@ -1,5 +1,5 @@
 ---
-title: "Case File NO "12043412" (The 'stale' account)"
+title: "The stale account"
 date: 2018-03-18
 ---
 
