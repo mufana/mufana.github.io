@@ -33,7 +33,7 @@ The first step is to define a 'stale' account and what to do with them.
 
 To be honest; that is not so easy. Simply because 'stale' could mean anything. If someone were to ask me to define a 'stale' account, I'd refer them to the HR or Security department.
 
-_Example_
+__Example__
 
 What if 'stale' means that the account has not been used for 3 (or more) months. And that it should be disabled, moved to a different AD Organizational Unit and that all userdata should be removed. 
 
@@ -205,7 +205,7 @@ _Always try to think ahead when you are creating a script. In this case, you mig
 
 Remember my empty array!? 
 
-Because I want to export all the information to an Excel file or website, I have to create some sort of table. And of course, we can pipe ```Get-AdUser``` to ```Export-Csv```. But, if you have to send out this information to non-technical people in your organisation, you might want to amke the output more _userfriendly_. 
+Because I want to export all the information to an Excel file or website, I have to create some sort of table. And of course, we can pipe ```Get-AdUser``` to ```Export-Csv```. But, if you have to send out this information to non-technical people in your organisation, you might want to make the output more _userfriendly_. 
 
 Therefore I create a new hashtable with _userfriendly_ names.
 
@@ -266,8 +266,6 @@ Why the __Contoso__ switch? well, there are organisations with an Active Directo
 
 ## Step 8: Add another parameter
 
-```[Switch]$CollectUsers```
-
 I've added another parameter called: __$CollectUsers__. 
 
 This block gathers the information from Active Directory and creates a nice hashtable.
@@ -317,7 +315,7 @@ $Results | Select $Select
 ## Step 9: Time to move
 
 For a large part, the PowerShell code to actually move user accounts and delete homefolders is the same. 
-I did however, added a few extra lines.
+However I've added a few extra lines.
 
 ### Check homedirectory
 
