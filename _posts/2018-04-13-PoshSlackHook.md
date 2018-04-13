@@ -9,11 +9,13 @@ date: 2018-04-13
 
 I'm currently working on a few PowerShell projects that require me to send a message to slack. Previously I had done this with the help of the PowerShell [PSSlack](http://ramblingcookiemonster.github.io/PSSlack/) module written by: __@RamblingCookieMonster__. But, since that required me to setup a few things and install modules on servers, I was looking for a much simpler way to send a slack message.
 
+Welcome to the world of the webhook!
+
 _Scripting against an API might seem a little daunting. But, with so many API's out there, it's almost impossible to avoid them. And it's really not that hard._
 
 ## WebHooks and API's
 
-What is a _webhook_ ? well, it's an API. Nothing more. However, there's a difference. When using an API, one has to make a request to the API which is then followed by a response. A webhook just sends something.
+What is a _webhook_ ? well, it's an API. Nothing more. However, there's a difference. When using an API, a request is send to the API, the request is then handled by the API and a response will be send. A webhook just sends something to a webhook service. Webhooks require you to register a URL providing the service.
 
 ## My first API
 
@@ -39,11 +41,11 @@ Invoke-RestMethod -Method get -uri http://api.open-notify.org/astros.json)
 
 This is a basic example how to get information from an API with PowerShell. Not that hard was it!?
 
-__Back to Slack!__
+### Back to Slack...
 
 ## Setup the WebHook integration for Slack
 
-1. The first step is to create a webhook integration for your channel. https://my.slack.com/services/new/incoming-webhook/
+1. The first step is to create a webhook integration for your channel. (https://my.slack.com/services/new/incoming-webhook/)
 
 3. Select a channel, (In this example I've used my _#test_ channel) and click on: ```Add Incoming Webhooks Integration```.
 
@@ -55,9 +57,10 @@ __Back to Slack!__
 
 ## Read the manual 
 
-So, we have our webhook integration. Now what? Well, it all comes down to reading the documentation. We have to figure out how this API/Webhooks actually works before we can use it.
+Now that we have our webhook integration, what's next? 
+Well, it all comes down to reading the documentation. We have to figure out how the webhook works before we can use it.
 
-You will find it here: https://api.slack.com/incoming-webhooks#sending_messages
+You will find it here: (https://api.slack.com/incoming-webhooks#sending_messages)
 
 At first glance you might think: _these are all _curl_ examples, there's no PowerShell, I have no idea what to do, what am I getting into! Where's Mum?_
 
