@@ -45,7 +45,7 @@ This is a basic example how to get information from an API with PowerShell. Not 
 
 ## Setup the WebHook integration for Slack
 
-1. The first step is to create a webhook integration for your channel. (https://my.slack.com/services/new/incoming-webhook/)
+1. The first step is to create a webhook integration for [your channel](https://my.slack.com/services/new/incoming-webhook/)
 
 3. Select a channel, (In this example I've used my _#test_ channel) and click on: ```Add Incoming Webhooks Integration```.
 
@@ -60,7 +60,7 @@ This is a basic example how to get information from an API with PowerShell. Not 
 Now that we have our webhook integration, what's next? 
 Well, it all comes down to reading the documentation. We have to figure out how the webhook works before we can use it.
 
-You will find it here: (https://api.slack.com/incoming-webhooks#sending_messages)
+You will find it [here.](https://api.slack.com/incoming-webhooks#sending_messages)
 
 At first glance you might think: _these are all _curl_ examples, there's no PowerShell, I have no idea what to do, what am I getting into! Where's Mum?_
 
