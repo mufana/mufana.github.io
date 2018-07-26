@@ -120,7 +120,7 @@ And voilá there's my JSON result.
 
 ![Result](https://codeinblue.files.wordpress.com/2018/07/2018-07-26-19_42_44-powershell-integrated-scripting-environment-5-1-17134-165-__-in-code-we-trust-__.png)
 
-Cool! But, John seems a bit lonely. So, it's to get him settled with Jane. 
+Cool! But, John seems a bit lonely. So, let's get him settled with Jane. 
 
 To create Jane, I can use pretty much the same code as above. Except, I need a body with the user parameters. This body has to in JSON format.
 

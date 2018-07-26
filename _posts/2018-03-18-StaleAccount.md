@@ -122,28 +122,6 @@ So, what happens in the code block above?
 
 First, the ```$Params``` block. You might notice that this block contains all the parameters for the; ```get-aduser``` cmdlet. Although they are stored in a hashtable!?
 
-#### Get-ADUser
-
-Second there's this: ```(Get-AdUser @Params)```
-
-This method is called _splatting_. A different way to parse parameters to a cmdlet. But how does it work?
-
-To explain that, the first thing we have to remember is that a variable is always defined by the: __$__ sign. As is the case with the: ```$Params``` block. 
-
-The __@__ sign is a little weird because it's used in multiple ways. 
-
-1. To define a new hashtable. ```$Params = @{}```
-2. As an operator. ```@Params```
-
-The operator __@__ sign behaves _almost_ the same as the __$__ sign. However, there are four actions taking place beneath the hood. 
-
-1. Treat everything behind the __@__ sign as a variable.
-2. The content of the variable as a hashtable.
-3. The keys as parameternames.
-4. The values as the value of the parameters.
-
-In the end, ```Get-AdUser @Params``` is actually the same as: ```Get-ADUser -LDAPfilter "Value" -Server "Value"```
-
 #### Filter
 
 Third, there's a filter. ```{$_.AccountExpires -le "$($Date.ToFileTimeUtc())"}``` Remember my ```$Date``` variable? This filters out only accounts accounts expired for at least 3 months.  
