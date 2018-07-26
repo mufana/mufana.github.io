@@ -122,9 +122,9 @@ And voilá there's my JSON result.
 
 Cool! But, John seems a bit lonely. So, let's get him settled with Jane. 
 
-To create Jane, I can use pretty much the same code as above. Except, I need a body with the user parameters. This body has to in JSON format.
+To create Jane, I can use pretty much the same code as above. Except, I need a body with the user parameters. This body has to be in JSON format.
 
-And, instead of a <get> method, I'll use <post>.
+And, instead of a _get_ method, I'll use _post_.
 
 ```powershell
 $Username = "" 
