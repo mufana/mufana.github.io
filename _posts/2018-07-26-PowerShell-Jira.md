@@ -57,9 +57,16 @@ But 'curl' isn't PowerShell! Right!?
 
 Well almost! 
 
+1. Open up the PowerShell Console.
+2. Type ```gal curl``` 
+
 ![curl](https://codeinblue.files.wordpress.com/2018/07/1.png)
 
-You'll see that 'curl' translates to; ```Invoke-WebRequest```. But, there's another cmdlet called: ```Invoke-RestMethod```. 
+You'll see that 'curl' translates to; ```Invoke-WebRequest```. 
+
+But, there's another cmdlet called: ```Invoke-RestMethod```. 
+
+![rest](https://codeinblue.files.wordpress.com/2018/07/2018-07-28-11_07_01-andre-styby-cancellara-__-powershell-5-1-17134-165-__-in-code-we-trust-__-zate.png)
 
 Now both of these cmdlets are wrapped around the same kind of functionality. The difference is that they both output differently. ```Invoke-WebRequest``` is better dealing with HTML. And; ```Invoke-RestMethod``` does a better job with XML or JSON. You have to experiment a little bit to find out which works best. 
 
@@ -67,7 +74,7 @@ Since I'm expecting a JSON response, I'll go with; ```Invoke-RestMethod```.
 
 #### How to authenticate
 
-I need to know how to authenticate to the API. According to the documentation, there are currently three methods of authentication.
+I need to know how to authenticate to the API. According to the documentation, Currently I can chose from three methods of authentication.
 
 * oAuth
 * Cookie based
@@ -79,13 +86,13 @@ For the examples in this blog series, I use the basic authentication method.
 
 Now I know what to expect, it's time to play around. Normally I'll start my coding journey in the PowerShell Console. But, for this project, I will make an exception and go directly to the ISE.
 
-#### Authentication and getting the first result
+#### Authentication and getting a first result
 
 I already created the user: _John Doe_ in Jira. And, I'm curious to see how dear old John looks in PowerShell.
 
 ![JiraResult](https://codeinblue.files.wordpress.com/2018/07/2018-07-26-19_44_31-microsoft-edge.png)
 
-First, I need to create an authentication code block.
+1. Create an authentication code block.
 
 ```powershell
 $Username = "" 
@@ -98,19 +105,19 @@ The above block gets the Username and Password for my Jira site, converts them t
 
 The string; ```$Token + Basic +``` is exactly what Jira expects. See the [basic authentication documentation.](https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-basic-authentication/)
 
-Next, I'll define a variable called; ```$Header```. This includes the token. 
+2. Define a variable called; ```$Header```. This includes the token. 
 
 ```powershell
 $Header = @{Authorization = $Token}
 ```
 
-Next, I'll define the URL of my Jira site. 
+3. Define the URL of my Jira site. 
 
 ```powershell
 $jiraUri = "https://yourjirasiteURL/rest/api/2/user/search?username=JohnDoe"
 ```
 
-And last; ```Invoke-RestMethod```.
+4. Call the ```Invoke-RestMethod```.
 
 ```powershell
 Invoke-RestMethod -Uri $jiraUri -Method Get -Headers $Header
@@ -122,26 +129,41 @@ And voilá there's my JSON result.
 
 Cool! But, John seems a bit lonely. So, let's get him settled with Jane. 
 
+#### Create a user
+
 To create Jane, I can use pretty much the same code as above. Except, I need a body with the user parameters. This body has to be in JSON format.
 
 And, instead of a _get_ method, I'll use _post_.
 
+1. First I'll use the _token_ and _header_ block.
 ```powershell
 $Username = "" 
 $Password = "" 
 
 $Token = "Basic " + [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("$($Username):$Password"))
 $Header = @{Authorization = $Token}
+```
 
+2. Define my Jira URL.
+
+```powershell
+$jiraUri = "YourJiraURL"
+``` 
+
+3. Now the body I'm going to send with the: ```Invoke-RestMethod``` cmdlet.
+
+```powershell
 $userCreationBody = @{
     name = "Jane Doe"
     password = "123131"
     emailAddress = "JaneDoe@somedomain.com"
     displayName = "Jane Doe"
 } | ConvertTo-Json
+```
 
-$jiraUri = "YourJiraURL"
+4. And last, call the cmdlet.
 
+```powershell
 Invoke-RestMethod -Uri $jiraUri -Method post -Headers $header -Body $UserCreationBody -ContentType application/json
 ```
 
@@ -149,7 +171,7 @@ And if Jane is alive, I get back a JSON response.
 
 ![response](https://codeinblue.files.wordpress.com/2018/07/2018-07-26-19_56_39-powershell-integrated-scripting-environment-5-1-17134-165-__-in-code-we-trust-__.png)
 
-And the result in Jira.
+The result in Jira.
 
 ![Jira1](https://codeinblue.files.wordpress.com/2018/07/2018-07-26-19_57_21-microsoft-edge.png)
 
@@ -161,8 +183,8 @@ The next step is to come up with a plan. There are lots of different ways to cre
 
 The tool will be used to create users in Jira and nothing more. To create users in Jira, I also want to make sure that the tool only creates users that don't exist already. _I don't want to create another Jane Doe, since this might get awkward for John!_.  
 
-Another important thing to consider is; when a user is created in Jira, an invitation email will be sent to the email address belonging to that user. So, the email address needs to unique.
-
+![MINDMAP](https://codeinblue.files.wordpress.com/2018/07/ed59bfb0924911e8b65439756066d1be-map.png
+)
 #### Gather all users from Jira
 
 At some point, I want to gather all existing users from Jira and store them; either in a variable or a CSV (or whatever file). So that I can make sure I only create users who are unique.
